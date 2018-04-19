@@ -12,12 +12,9 @@
  * limitations under the License.
  */
 
-/**
- * Sample access control list.
- */
-rule EverybodyCanReadEverything {
-    description: "Allow all participants read access to all resources"
-    participant: "org.szg.SampleParticipant"
+rule SystemAdministratorCanReadEverything {
+    description: "Allow SystemAdministrator participants read access to all resources"
+    participant: "org.szg.SystemAdministrator"
     operation: READ
     resource: "org.szg.*"
     action: ALLOW
@@ -25,17 +22,17 @@ rule EverybodyCanReadEverything {
 
 rule EverybodyCanSubmitTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "org.szg.SampleParticipant"
+    participant: "org.szg.*"
     operation: CREATE
-    resource: "org.szg.SampleTransaction"
+    resource: "org.szg.*"
     action: ALLOW
 }
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "org.szg.SampleParticipant"
+    participant(p): "org.szg.*"
     operation: ALL
-    resource(r): "org.szg.SampleAsset"
+    resource(r): "org.szg.*"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }

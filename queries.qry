@@ -1,0 +1,152 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+//participants query
+query selectMembers {
+  description: "Select all members"
+  statement:
+      SELECT org.szg.Member
+}
+
+query selectStudents {
+  description: "Select all Students"
+  statement:
+      SELECT org.szg.Student
+}
+
+query selectProfesors {
+  description: "Select all Profesors"
+  statement:
+      SELECT org.szg.Profesor
+}
+
+query selectStaff {
+  description: "Select all Staffs"
+  statement:
+      SELECT org.szg.Staff
+}
+
+query selectSystemAdministrator {
+  description: "Select all SystemAdministrators"
+  statement:
+      SELECT org.szg.SystemAdministrator
+}
+
+
+
+query selectMember {
+  description: "Select members with particular jmbag"
+  statement:
+      SELECT org.szg.Member
+        WHERE (_$jmbagParam == jmbag)
+}
+
+query selectMembersByYearOfCollage{
+  description: "Select all Students by year of collage"
+  statement:
+      SELECT org.szg.Student
+        WHERE (_$yearOfCollageParam == yearOfCollage)
+}
+
+query selectMembersByYearOfCollageByUniversityComponent{
+  description: "Select all members of particular UniversityComponent of particular year of collage"
+  statement:
+      SELECT org.szg.Student
+        WHERE (_$universityNameParam == universityComponent.universityName    AND _$yearOfCollageParam == yearOfCollage)
+}
+
+query selectMembersOfUniversityComponent {
+  description: "Select all members of particular UniversityComponent"
+  statement:
+      SELECT org.szg.Member
+        WHERE (_$universityNameParam == universityComponent.universityName)
+}
+
+query selectStudentsOfUniversityComponent {
+  description: "Select all Students"
+  statement:
+      SELECT org.szg.Student
+        WHERE (_$universityNameParam == universityComponent.universityName)
+}
+
+query selectProfesorsOfUniversityComponent {
+  description: "Select all Profesors"
+  statement:
+      SELECT org.szg.Profesor
+        WHERE (_$universityNameParam == universityComponent.universityName)
+}
+
+query selectStaffOfUniversityComponent {
+  description: "Select all Staffs"
+  statement:
+      SELECT org.szg.Staff
+        WHERE (_$universityNameParam == universityComponent.universityName)
+}
+
+query selectSystemAdministratorOfUniversityComponent {
+  description: "Select all SystemAdministrators"
+  statement:
+      SELECT org.szg.SystemAdministrator
+        WHERE (_$universityNameParam == universityComponent.universityName)
+}
+
+//asset query
+query selectUniversityComponents {
+  description: "Select all UniversityComponents"
+  statement:
+      SELECT org.szg.UniversityComponent
+}
+
+query selectUniversityComponentByKey {
+  description: "Select members with particular key"
+  statement:
+      SELECT org.szg.UniversityComponent 
+        WHERE (_$universityKeyparam == universityKey)
+}
+
+query selectUniversityComponentByName {
+  description: "Select members with particular name"
+  statement:
+      SELECT org.szg.UniversityComponent 
+        WHERE (_$universityNameparam == universityName)
+}
+
+query selectIsOpened {
+  description: "Query is particular collage in working time"
+  statement:
+      SELECT org.szg.UniversityComponent
+        WHERE (_$universityNameparam == universityName AND _$timeparam >= opening AND _$timeparam <= closing)       
+}
+
+query selectIsFEROpened {
+  description: "Query is particular collage FER in working time"
+  statement:
+      SELECT org.szg.UniversityComponent
+        WHERE (universityName == "FER" AND _$timeparam >= opening AND _$timeparam <= closing)       
+}
+
+query selectIsFFZGOpened {
+  description: "Query is particular collage FFZG in working time"
+  statement:
+      SELECT org.szg.UniversityComponent
+        WHERE (universityName == "FFZG" AND _$timeparam >= opening AND _$timeparam <= closing)       
+}
+
+query selectIsFSBOpened {
+  description: "Query is particular collage FSB in working time"
+  statement:
+      SELECT org.szg.UniversityComponent
+        WHERE (universityName == "FSB" AND _$timeparam >= opening AND _$timeparam <= closing)       
+}

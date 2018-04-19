@@ -12,31 +12,81 @@
  * limitations under the License.
  */
 
-/**
- * Write your model definitions here
- */
-
 namespace org.szg
 
-participant SampleParticipant identified by participantId {
-  o String participantId
+enum UniversityComponentName {
+  o FER
+  o FFZG
+  o FSB
+}
+
+abstract participant Member identified by jmbag {
+  o String jmbag regex=/[0-9]{12}/
   o String firstName
   o String lastName
+  --> UniversityComponent universityComponent
+  o String[] authorized optional
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
+participant Student extends Member{
+  o Integer yearOfCollage
 }
 
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
+participant Profesor extends Member{
+  o String title 
+  o String fieldOfJob optional
 }
 
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
+participant Staff extends Member{
+  o String jobPosition
+}
+
+participant SystemAdministrator extends Member{
+  o String jobPosition
+}
+
+asset UniversityComponent identified by universityKey {
+  o String universityKey regex=/[0-9]{4}/
+  o UniversityComponentName universityName
+  o String ComponentName optional
+  o Integer opening
+  o Integer closing
+} 
+
+abstract transaction MemberAccess {
+  o String jmbag regex=/[0-9]{12}/
+  o String universityKey regex=/[0-9]{4}/
+  o DateTime transactionTime optional
+  o Boolean accessGranted default = false
+}
+
+transaction GrantAccessFER extends MemberAccess {
+}
+
+transaction AuthorizeAccessFER extends MemberAccess {
+}
+
+transaction RevokeAccessFER extends MemberAccess {
+}
+
+/*transaction AuthorizeAccessFERUprava extends MemberAccess {
+}
+
+transaction RevokeAccessFERUprava  extends MemberAccess {
+}*/
+
+transaction AuthorizeAccessFFZG extends MemberAccess {
+}
+
+transaction RevokeAccessFFZG extends MemberAccess {
+}
+
+transaction AuthorizeAccessFSB extends MemberAccess {
+}
+
+transaction RevokeAccessFSB extends MemberAccess {
+}
+
+event MemberEvent {
+  o MemberAccess memberAccess
 }
