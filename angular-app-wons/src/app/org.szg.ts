@@ -13,7 +13,8 @@ import {Event} from './org.hyperledger.composer.system';
       firstName: string;
       lastName: string;
       universityComponent: UniversityComponent;
-      authorized: string[];
+      transactionAuthorized: string[];
+      transactionRevoke: string[];
    }
    export class Student extends Member {
       yearOfCollage: number;
@@ -38,10 +39,6 @@ import {Event} from './org.hyperledger.composer.system';
    export abstract class MemberAccess extends Transaction {
       jmbag: string;
       universityKey: string;
-      transactionTime: Date;
-      accessGranted: boolean;
-   }
-   export class GrantAccessFER extends MemberAccess {
    }
    export class AuthorizeAccessFER extends MemberAccess {
    }

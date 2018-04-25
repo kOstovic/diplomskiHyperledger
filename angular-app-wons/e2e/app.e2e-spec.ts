@@ -17,37 +17,37 @@ import { ExpectedConditions, browser, element, by } from 'protractor';
 import {} from 'jasmine';
 
 
-describe('Starting tests for angular-app-wons', function() {
+describe('Starting tests for angular-app-wons2', function() {
   let page: AngularTestPage;
 
   beforeEach(() => {
     page = new AngularTestPage();
   });
 
-  it('website title should be angular-app-wons', () => {
+  it('website title should be angular-app-wons2', () => {
     page.navigateTo('/');
     return browser.getTitle().then((result)=>{
-      expect(result).toBe('angular-app-wons');
+      expect(result).toBe('angular-app-wons2');
     })
   });
 
-  it('network-name should be pii-szg-network@0.0.1',() => {
+  it('network-name should be pii-szg-network@0.0.2',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('pii-szg-network@0.0.1.bna');
+      expect(txt).toBe('pii-szg-network@0.0.2.bna');
     });
   });
 
-  it('navbar-brand should be angular-app-wons',() => {
+  it('navbar-brand should be angular-app-wons2',() => {
     element(by.css('.navbar-brand')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('angular-app-wons');
+      expect(txt).toBe('angular-app-wons2');
     });
   });
 
@@ -83,10 +83,10 @@ describe('Starting tests for angular-app-wons', function() {
       });
     });
 
-    it('Student table should have 7 columns',() => {
+    it('Student table should have 8 columns',() => {
       page.navigateTo('/Student');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
       });
     });
   
@@ -101,10 +101,10 @@ describe('Starting tests for angular-app-wons', function() {
       });
     });
 
-    it('Profesor table should have 8 columns',() => {
+    it('Profesor table should have 9 columns',() => {
       page.navigateTo('/Profesor');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(9); // Addition of 1 for 'Action' column
       });
     });
   
@@ -119,10 +119,10 @@ describe('Starting tests for angular-app-wons', function() {
       });
     });
 
-    it('Staff table should have 7 columns',() => {
+    it('Staff table should have 8 columns',() => {
       page.navigateTo('/Staff');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
       });
     });
   
@@ -137,25 +137,14 @@ describe('Starting tests for angular-app-wons', function() {
       });
     });
 
-    it('SystemAdministrator table should have 7 columns',() => {
+    it('SystemAdministrator table should have 8 columns',() => {
       page.navigateTo('/SystemAdministrator');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
       });
     });
   
 
-  
-    it('GrantAccessFER component should be loadable',() => {
-      page.navigateTo('/GrantAccessFER');
-      browser.findElement(by.id('transactionName'))
-      .then((transactionName) => {
-        return transactionName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('GrantAccessFER');
-      });
-    });
   
     it('AuthorizeAccessFER component should be loadable',() => {
       page.navigateTo('/AuthorizeAccessFER');

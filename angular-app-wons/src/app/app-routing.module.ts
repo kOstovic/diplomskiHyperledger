@@ -26,7 +26,6 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
-  import { GrantAccessFERComponent } from './GrantAccessFER/GrantAccessFER.component';
   import { AuthorizeAccessFERComponent } from './AuthorizeAccessFER/AuthorizeAccessFER.component';
   import { RevokeAccessFERComponent } from './RevokeAccessFER/RevokeAccessFER.component';
   import { AuthorizeAccessFFZGComponent } from './AuthorizeAccessFFZG/AuthorizeAccessFFZG.component';
@@ -49,8 +48,6 @@ const routes: Routes = [
       { path: 'SystemAdministrator', component: SystemAdministratorComponent},
       
       
-        { path: 'GrantAccessFER', component: GrantAccessFERComponent},
-        
         { path: 'AuthorizeAccessFER', component: AuthorizeAccessFERComponent},
         
         { path: 'RevokeAccessFER', component: RevokeAccessFERComponent},

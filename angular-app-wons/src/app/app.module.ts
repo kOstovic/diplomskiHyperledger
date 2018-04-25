@@ -31,7 +31,6 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
-  import { GrantAccessFERComponent } from './GrantAccessFER/GrantAccessFER.component';
   import { AuthorizeAccessFERComponent } from './AuthorizeAccessFER/AuthorizeAccessFER.component';
   import { RevokeAccessFERComponent } from './RevokeAccessFER/RevokeAccessFER.component';
   import { AuthorizeAccessFFZGComponent } from './AuthorizeAccessFFZG/AuthorizeAccessFFZG.component';
@@ -54,8 +53,7 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
       SystemAdministratorComponent
       ,
 
-    GrantAccessFERComponent,
-        AuthorizeAccessFERComponent,
+    AuthorizeAccessFERComponent,
         RevokeAccessFERComponent,
         AuthorizeAccessFFZGComponent,
         RevokeAccessFFZGComponent,

@@ -53,7 +53,11 @@ export class StaffComponent implements OnInit {
         
   
       
-          authorized = new FormControl("", Validators.required);
+          transactionAuthorized = new FormControl("", Validators.required);
+        
+  
+      
+          transactionRevoke = new FormControl("", Validators.required);
         
   
 
@@ -82,7 +86,11 @@ export class StaffComponent implements OnInit {
         
     
         
-          authorized:this.authorized
+          transactionAuthorized:this.transactionAuthorized,
+        
+    
+        
+          transactionRevoke:this.transactionRevoke
         
     
     });
@@ -166,7 +174,11 @@ export class StaffComponent implements OnInit {
         
       
         
-          "authorized":this.authorized.value
+          "transactionAuthorized":this.transactionAuthorized.value,
+        
+      
+        
+          "transactionRevoke":this.transactionRevoke.value
         
       
     };
@@ -194,7 +206,11 @@ export class StaffComponent implements OnInit {
         
       
         
-          "authorized":null
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null
         
       
     });
@@ -226,7 +242,11 @@ export class StaffComponent implements OnInit {
         
       
         
-          "authorized":null 
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null 
         
       
       });
@@ -276,7 +296,13 @@ export class StaffComponent implements OnInit {
     
         
           
-            "authorized":this.authorized.value
+            "transactionAuthorized":this.transactionAuthorized.value,
+          
+        
+    
+        
+          
+            "transactionRevoke":this.transactionRevoke.value
           
         
     
@@ -354,7 +380,11 @@ export class StaffComponent implements OnInit {
           
         
           
-            "authorized":null 
+            "transactionAuthorized":null,
+          
+        
+          
+            "transactionRevoke":null 
           
         
       };
@@ -402,12 +432,20 @@ export class StaffComponent implements OnInit {
           formObject.universityComponent = null;
         }
       
-        if(result.authorized){
+        if(result.transactionAuthorized){
           
-            formObject.authorized = result.authorized;
+            formObject.transactionAuthorized = result.transactionAuthorized;
           
         }else{
-          formObject.authorized = null;
+          formObject.transactionAuthorized = null;
+        }
+      
+        if(result.transactionRevoke){
+          
+            formObject.transactionRevoke = result.transactionRevoke;
+          
+        }else{
+          formObject.transactionRevoke = null;
         }
       
 
@@ -452,7 +490,11 @@ export class StaffComponent implements OnInit {
         
       
         
-          "authorized":null 
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null 
         
       
       });

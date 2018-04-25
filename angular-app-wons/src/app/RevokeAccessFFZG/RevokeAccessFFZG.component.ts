@@ -41,14 +41,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
         
   
       
-          transactionTime = new FormControl("", Validators.required);
-        
-  
-      
-          accessGranted = new FormControl("", Validators.required);
-        
-  
-      
           transactionId = new FormControl("", Validators.required);
         
   
@@ -67,14 +59,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
     
         
           universityKey:this.universityKey,
-        
-    
-        
-          transactionTime:this.transactionTime,
-        
-    
-        
-          accessGranted:this.accessGranted,
         
     
         
@@ -154,14 +138,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
         
       
         
-          "transactionTime":this.transactionTime.value,
-        
-      
-        
-          "accessGranted":this.accessGranted.value,
-        
-      
-        
           "transactionId":this.transactionId.value,
         
       
@@ -179,14 +155,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
       
         
           "universityKey":null,
-        
-      
-        
-          "transactionTime":null,
-        
-      
-        
-          "accessGranted":null,
         
       
         
@@ -211,14 +179,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
       
         
           "universityKey":null,
-        
-      
-        
-          "transactionTime":null,
-        
-      
-        
-          "accessGranted":null,
         
       
         
@@ -255,18 +215,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
         
           
             "universityKey":this.universityKey.value,
-          
-        
-    
-        
-          
-            "transactionTime":this.transactionTime.value,
-          
-        
-    
-        
-          
-            "accessGranted":this.accessGranted.value,
           
         
     
@@ -342,14 +290,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
           
         
           
-            "transactionTime":null,
-          
-        
-          
-            "accessGranted":null,
-          
-        
-          
             "transactionId":null,
           
         
@@ -376,22 +316,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
           
         }else{
           formObject.universityKey = null;
-        }
-      
-        if(result.transactionTime){
-          
-            formObject.transactionTime = result.transactionTime;
-          
-        }else{
-          formObject.transactionTime = null;
-        }
-      
-        if(result.accessGranted){
-          
-            formObject.accessGranted = result.accessGranted;
-          
-        }else{
-          formObject.accessGranted = null;
         }
       
         if(result.transactionId){
@@ -437,14 +361,6 @@ export class RevokeAccessFFZGComponent implements OnInit {
       
         
           "universityKey":null,
-        
-      
-        
-          "transactionTime":null,
-        
-      
-        
-          "accessGranted":null,
         
       
         
