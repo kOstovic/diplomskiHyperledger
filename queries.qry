@@ -20,31 +20,11 @@ query selectMembers {
       SELECT org.szg.Member
 }
 
-query selectStudents {
-  description: "Select all Students"
-  statement:
-      SELECT org.szg.Student
-}
-
-query selectProfesors {
-  description: "Select all Profesors"
-  statement:
-      SELECT org.szg.Profesor
-}
-
-query selectStaff {
-  description: "Select all Staffs"
-  statement:
-      SELECT org.szg.Staff
-}
-
-query selectSystemAdministrator {
+query selectSystemAdministrators {
   description: "Select all SystemAdministrators"
   statement:
       SELECT org.szg.SystemAdministrator
 }
-
-
 
 query selectMember {
   description: "Select members with particular jmbag"
@@ -53,45 +33,17 @@ query selectMember {
         WHERE (_$jmbagParam == jmbag)
 }
 
-query selectMembersByYearOfCollage{
-  description: "Select all Students by year of collage"
+query selectSystemAdministrator {
+  description: "Select all SystemAdministrators"
   statement:
-      SELECT org.szg.Student
-        WHERE (_$yearOfCollageParam == yearOfCollage)
-}
-
-query selectMembersByYearOfCollageByUniversityComponent{
-  description: "Select all members of particular UniversityComponent of particular year of collage"
-  statement:
-      SELECT org.szg.Student
-        WHERE (_$universityNameParam == universityComponent.universityName    AND _$yearOfCollageParam == yearOfCollage)
+      SELECT org.szg.SystemAdministrator
+        WHERE (_$jmbagParam == jmbag)
 }
 
 query selectMembersOfUniversityComponent {
   description: "Select all members of particular UniversityComponent"
   statement:
       SELECT org.szg.Member
-        WHERE (_$universityNameParam == universityComponent.universityName)
-}
-
-query selectStudentsOfUniversityComponent {
-  description: "Select all Students"
-  statement:
-      SELECT org.szg.Student
-        WHERE (_$universityNameParam == universityComponent.universityName)
-}
-
-query selectProfesorsOfUniversityComponent {
-  description: "Select all Profesors"
-  statement:
-      SELECT org.szg.Profesor
-        WHERE (_$universityNameParam == universityComponent.universityName)
-}
-
-query selectStaffOfUniversityComponent {
-  description: "Select all Staffs"
-  statement:
-      SELECT org.szg.Staff
         WHERE (_$universityNameParam == universityComponent.universityName)
 }
 
@@ -127,13 +79,14 @@ query selectIsOpened {
   description: "Query is particular collage in working time"
   statement:
       SELECT org.szg.UniversityComponent
-        WHERE (_$universityNameparam == universityName AND _$timeparam >= opening AND _$timeparam <= closing)       
+        WHERE (_$universityKeyparam == universityKey AND _$timeparam >= opening AND _$timeparam <= closing)       
 }
 
 query selectIsFEROpened {
   description: "Query is particular collage FER in working time"
   statement:
       SELECT org.szg.UniversityComponent
+      
         WHERE (universityName == "FER" AND _$timeparam >= opening AND _$timeparam <= closing)       
 }
 

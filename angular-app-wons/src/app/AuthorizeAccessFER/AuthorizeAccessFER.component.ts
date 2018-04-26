@@ -33,11 +33,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
 
   
       
-          jmbag = new FormControl("", Validators.required);
+          member = new FormControl("", Validators.required);
         
   
       
-          universityKey = new FormControl("", Validators.required);
+          universityComponent = new FormControl("", Validators.required);
         
   
       
@@ -54,11 +54,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
     this.myForm = fb.group({
     
         
-          jmbag:this.jmbag,
+          member:this.member,
         
     
         
-          universityKey:this.universityKey,
+          universityComponent:this.universityComponent,
         
     
         
@@ -130,11 +130,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
       $class: "org.szg.AuthorizeAccessFER",
       
         
-          "jmbag":this.jmbag.value,
+          "member":this.member.value,
         
       
         
-          "universityKey":this.universityKey.value,
+          "universityComponent":this.universityComponent.value,
         
       
         
@@ -150,11 +150,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "jmbag":null,
+          "member":null,
         
       
         
-          "universityKey":null,
+          "universityComponent":null,
         
       
         
@@ -174,11 +174,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
       this.myForm.setValue({
       
         
-          "jmbag":null,
+          "member":null,
         
       
         
-          "universityKey":null,
+          "universityComponent":null,
         
       
         
@@ -208,13 +208,13 @@ export class AuthorizeAccessFERComponent implements OnInit {
       
         
           
-            "jmbag":this.jmbag.value,
+            "member":this.member.value,
           
         
     
         
           
-            "universityKey":this.universityKey.value,
+            "universityComponent":this.universityComponent.value,
           
         
     
@@ -282,11 +282,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
       let formObject = {
         
           
-            "jmbag":null,
+            "member":null,
           
         
           
-            "universityKey":null,
+            "universityComponent":null,
           
         
           
@@ -302,20 +302,20 @@ export class AuthorizeAccessFERComponent implements OnInit {
 
 
       
-        if(result.jmbag){
+        if(result.member){
           
-            formObject.jmbag = result.jmbag;
+            formObject.member = result.member;
           
         }else{
-          formObject.jmbag = null;
+          formObject.member = null;
         }
       
-        if(result.universityKey){
+        if(result.universityComponent){
           
-            formObject.universityKey = result.universityKey;
+            formObject.universityComponent = result.universityComponent;
           
         }else{
-          formObject.universityKey = null;
+          formObject.universityComponent = null;
         }
       
         if(result.transactionId){
@@ -356,11 +356,11 @@ export class AuthorizeAccessFERComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "jmbag":null,
+          "member":null,
         
       
         
-          "universityKey":null,
+          "universityComponent":null,
         
       
         

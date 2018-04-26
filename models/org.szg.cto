@@ -19,6 +19,11 @@ enum UniversityComponentName {
   o FFZG
   o FSB
 }
+enum MemberType {
+  o Student
+  o Profesor
+  o Staff
+}
 /*
 concept GrantAccessStruct {
   o DateTime [] transactionTimeAuthorize optional
@@ -27,18 +32,19 @@ concept GrantAccessStruct {
   --> UniversityComponent universityComponentRevoke
 }*/
 
-abstract participant Member identified by jmbag {
+participant Member identified by jmbag {
   o String jmbag regex=/[0-9]{10}/
   o String firstName
   o String lastName
   --> UniversityComponent universityComponent
   o String[] transactionAuthorized optional
   o String[] transactionRevoke optional  
+  o MemberType memberType
 //  o DateTime [] transactionTimeAuthorize optional
 //  o DateTime [] transactionTimeRevoke optional
 //  o GrantAccessStruct grantAccessStruct
 }
-
+/*
 participant Student extends Member{
   o Integer yearOfCollage
 }
@@ -50,7 +56,7 @@ participant Profesor extends Member{
 
 participant Staff extends Member{
   o String jobPosition
-}
+}*/
 
 participant SystemAdministrator extends Member{
   o String jobPosition
@@ -60,13 +66,17 @@ asset UniversityComponent identified by universityKey {
   o String universityKey regex=/[0-9]{4}/
   o UniversityComponentName universityName
   o String ComponentName optional
-  o Integer opening
-  o Integer closing
+  o Integer opening range=[0,2359]
+  o Integer closing range=[0,2359]
+  o String[] transactionAuthorized optional
+  o String[] transactionRevoke optional
 } 
 
 abstract transaction MemberAccess {
-  o String jmbag regex=/[0-9]{10}/
-  o String universityKey regex=/[0-9]{4}/
+//  o String jmbag regex=/[0-9]{10}/
+//  o String universityKey regex=/[0-9]{4}/
+ --> Member member
+ --> UniversityComponent universityComponent 
 }
 
 transaction AuthorizeAccessFER extends MemberAccess {

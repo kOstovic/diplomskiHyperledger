@@ -14,15 +14,15 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { StudentService } from './Student.service';
+import { MemberService } from './Member.service';
 import 'rxjs/add/operator/toPromise';
 @Component({
-	selector: 'app-Student',
-	templateUrl: './Student.component.html',
-	styleUrls: ['./Student.component.css'],
-  providers: [StudentService]
+	selector: 'app-Member',
+	templateUrl: './Member.component.html',
+	styleUrls: ['./Member.component.css'],
+  providers: [MemberService]
 })
-export class StudentComponent implements OnInit {
+export class MemberComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -31,10 +31,6 @@ export class StudentComponent implements OnInit {
   private currentId;
 	private errorMessage;
 
-  
-      
-          yearOfCollage = new FormControl("", Validators.required);
-        
   
       
           jmbag = new FormControl("", Validators.required);
@@ -60,14 +56,14 @@ export class StudentComponent implements OnInit {
           transactionRevoke = new FormControl("", Validators.required);
         
   
+      
+          memberType = new FormControl("", Validators.required);
+        
+  
 
 
-  constructor(private serviceStudent:StudentService, fb: FormBuilder) {
+  constructor(private serviceMember:MemberService, fb: FormBuilder) {
     this.myForm = fb.group({
-    
-        
-          yearOfCollage:this.yearOfCollage,
-        
     
         
           jmbag:this.jmbag,
@@ -90,7 +86,11 @@ export class StudentComponent implements OnInit {
         
     
         
-          transactionRevoke:this.transactionRevoke
+          transactionRevoke:this.transactionRevoke,
+        
+    
+        
+          memberType:this.memberType
         
     
     });
@@ -102,7 +102,7 @@ export class StudentComponent implements OnInit {
 
   loadAll(): Promise<any> {
     let tempList = [];
-    return this.serviceStudent.getAll()
+    return this.serviceMember.getAll()
     .toPromise()
     .then((result) => {
 			this.errorMessage = null;
@@ -151,11 +151,7 @@ export class StudentComponent implements OnInit {
 
   addParticipant(form: any): Promise<any> {
     this.participant = {
-      $class: "org.szg.Student",
-      
-        
-          "yearOfCollage":this.yearOfCollage.value,
-        
+      $class: "org.szg.Member",
       
         
           "jmbag":this.jmbag.value,
@@ -178,7 +174,11 @@ export class StudentComponent implements OnInit {
         
       
         
-          "transactionRevoke":this.transactionRevoke.value
+          "transactionRevoke":this.transactionRevoke.value,
+        
+      
+        
+          "memberType":this.memberType.value
         
       
     };
@@ -186,10 +186,6 @@ export class StudentComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "yearOfCollage":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -210,22 +206,22 @@ export class StudentComponent implements OnInit {
         
       
         
-          "transactionRevoke":null
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null
         
       
     });
 
-    return this.serviceStudent.addParticipant(this.participant)
+    return this.serviceMember.addParticipant(this.participant)
     .toPromise()
     .then(() => {
 			this.errorMessage = null;
       this.myForm.setValue({
       
         
-          "yearOfCollage":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -246,7 +242,11 @@ export class StudentComponent implements OnInit {
         
       
         
-          "transactionRevoke":null 
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null 
         
       
       });
@@ -264,14 +264,8 @@ export class StudentComponent implements OnInit {
 
    updateParticipant(form: any): Promise<any> {
     this.participant = {
-      $class: "org.szg.Student",
+      $class: "org.szg.Member",
       
-        
-          
-            "yearOfCollage":this.yearOfCollage.value,
-          
-        
-    
         
           
         
@@ -302,13 +296,19 @@ export class StudentComponent implements OnInit {
     
         
           
-            "transactionRevoke":this.transactionRevoke.value
+            "transactionRevoke":this.transactionRevoke.value,
+          
+        
+    
+        
+          
+            "memberType":this.memberType.value
           
         
     
     };
 
-    return this.serviceStudent.updateParticipant(form.get("jmbag").value,this.participant)
+    return this.serviceMember.updateParticipant(form.get("jmbag").value,this.participant)
 		.toPromise()
 		.then(() => {
 			this.errorMessage = null;
@@ -329,7 +329,7 @@ export class StudentComponent implements OnInit {
 
   deleteParticipant(): Promise<any> {
 
-    return this.serviceStudent.deleteParticipant(this.currentId)
+    return this.serviceMember.deleteParticipant(this.currentId)
 		.toPromise()
 		.then(() => {
 			this.errorMessage = null;
@@ -353,15 +353,11 @@ export class StudentComponent implements OnInit {
 
   getForm(id: any): Promise<any>{
 
-    return this.serviceStudent.getparticipant(id)
+    return this.serviceMember.getparticipant(id)
     .toPromise()
     .then((result) => {
 			this.errorMessage = null;
       let formObject = {
-        
-          
-            "yearOfCollage":null,
-          
         
           
             "jmbag":null,
@@ -384,21 +380,17 @@ export class StudentComponent implements OnInit {
           
         
           
-            "transactionRevoke":null 
+            "transactionRevoke":null,
+          
+        
+          
+            "memberType":null 
           
         
       };
 
 
 
-      
-        if(result.yearOfCollage){
-          
-            formObject.yearOfCollage = result.yearOfCollage;
-          
-        }else{
-          formObject.yearOfCollage = null;
-        }
       
         if(result.jmbag){
           
@@ -448,6 +440,14 @@ export class StudentComponent implements OnInit {
           formObject.transactionRevoke = null;
         }
       
+        if(result.memberType){
+          
+            formObject.memberType = result.memberType;
+          
+        }else{
+          formObject.memberType = null;
+        }
+      
 
       this.myForm.setValue(formObject);
 
@@ -470,10 +470,6 @@ export class StudentComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "yearOfCollage":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -494,7 +490,11 @@ export class StudentComponent implements OnInit {
         
       
         
-          "transactionRevoke":null 
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null 
         
       
       });

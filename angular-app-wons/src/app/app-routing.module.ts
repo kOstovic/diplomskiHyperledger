@@ -20,9 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { UniversityComponentComponent } from './UniversityComponent/UniversityComponent.component';
 
 
-  import { StudentComponent } from './Student/Student.component';
-  import { ProfesorComponent } from './Profesor/Profesor.component';
-  import { StaffComponent } from './Staff/Staff.component';
+  import { MemberComponent } from './Member/Member.component';
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
@@ -39,11 +37,7 @@ const routes: Routes = [
 		{ path: 'UniversityComponent', component: UniversityComponentComponent},
     
     
-      { path: 'Student', component: StudentComponent},
-      
-      { path: 'Profesor', component: ProfesorComponent},
-      
-      { path: 'Staff', component: StaffComponent},
+      { path: 'Member', component: MemberComponent},
       
       { path: 'SystemAdministrator', component: SystemAdministratorComponent},
       

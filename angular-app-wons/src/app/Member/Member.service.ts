@@ -15,39 +15,39 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { Student } from '../org.szg';
+import { Member } from '../org.szg';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class StudentService {
+export class MemberService {
 
 	
-		private NAMESPACE: string = 'Student';
+		private NAMESPACE: string = 'Member';
 	
 
 
 
-    constructor(private dataService: DataService<Student>) {
+    constructor(private dataService: DataService<Member>) {
     };
 
-    public getAll(): Observable<Student[]> {
+    public getAll(): Observable<Member[]> {
         return this.dataService.getAll(this.NAMESPACE);
     }
 
-    public getparticipant(id: any): Observable<Student> {
+    public getparticipant(id: any): Observable<Member> {
       return this.dataService.getSingle(this.NAMESPACE, id);
     }
 
-    public addParticipant(itemToAdd: any): Observable<Student> {
+    public addParticipant(itemToAdd: any): Observable<Member> {
       return this.dataService.add(this.NAMESPACE, itemToAdd);
     }
 
-    public updateParticipant(id: any, itemToUpdate: any): Observable<Student> {
+    public updateParticipant(id: any, itemToUpdate: any): Observable<Member> {
       return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
     }
 
-    public deleteParticipant(id: any): Observable<Student> {
+    public deleteParticipant(id: any): Observable<Member> {
       return this.dataService.delete(this.NAMESPACE, id);
     }
 

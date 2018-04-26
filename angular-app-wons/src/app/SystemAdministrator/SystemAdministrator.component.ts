@@ -60,6 +60,10 @@ export class SystemAdministratorComponent implements OnInit {
           transactionRevoke = new FormControl("", Validators.required);
         
   
+      
+          memberType = new FormControl("", Validators.required);
+        
+  
 
 
   constructor(private serviceSystemAdministrator:SystemAdministratorService, fb: FormBuilder) {
@@ -90,7 +94,11 @@ export class SystemAdministratorComponent implements OnInit {
         
     
         
-          transactionRevoke:this.transactionRevoke
+          transactionRevoke:this.transactionRevoke,
+        
+    
+        
+          memberType:this.memberType
         
     
     });
@@ -178,7 +186,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "transactionRevoke":this.transactionRevoke.value
+          "transactionRevoke":this.transactionRevoke.value,
+        
+      
+        
+          "memberType":this.memberType.value
         
       
     };
@@ -210,7 +222,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "transactionRevoke":null
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null
         
       
     });
@@ -246,7 +262,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "transactionRevoke":null 
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null 
         
       
       });
@@ -302,7 +322,13 @@ export class SystemAdministratorComponent implements OnInit {
     
         
           
-            "transactionRevoke":this.transactionRevoke.value
+            "transactionRevoke":this.transactionRevoke.value,
+          
+        
+    
+        
+          
+            "memberType":this.memberType.value
           
         
     
@@ -384,7 +410,11 @@ export class SystemAdministratorComponent implements OnInit {
           
         
           
-            "transactionRevoke":null 
+            "transactionRevoke":null,
+          
+        
+          
+            "memberType":null 
           
         
       };
@@ -448,6 +478,14 @@ export class SystemAdministratorComponent implements OnInit {
           formObject.transactionRevoke = null;
         }
       
+        if(result.memberType){
+          
+            formObject.memberType = result.memberType;
+          
+        }else{
+          formObject.memberType = null;
+        }
+      
 
       this.myForm.setValue(formObject);
 
@@ -494,7 +532,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "transactionRevoke":null 
+          "transactionRevoke":null,
+        
+      
+        
+          "memberType":null 
         
       
       });

@@ -25,9 +25,7 @@ import { HomeComponent } from './home/home.component';
 import { UniversityComponentComponent } from './UniversityComponent/UniversityComponent.component';
 
 
-  import { StudentComponent } from './Student/Student.component';
-  import { ProfesorComponent } from './Profesor/Profesor.component';
-  import { StaffComponent } from './Staff/Staff.component';
+  import { MemberComponent } from './Member/Member.component';
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
@@ -46,9 +44,7 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
     UniversityComponentComponent
     ,
 
-    StudentComponent,
-      ProfesorComponent,
-      StaffComponent,
+    MemberComponent,
       
       SystemAdministratorComponent
       ,

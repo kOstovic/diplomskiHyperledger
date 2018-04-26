@@ -27,16 +27,6 @@
   
               
                 <div class="form-group text-left">
-                  <label for="yearOfCollage">yearOfCollage</label>
-                  
-                    <input formControlName="yearOfCollage" type="number" class="form-control">
-                  
-                </div>
-              
-            
-  
-              
-                <div class="form-group text-left">
                   <label for="jmbag">jmbag</label>
                   
                     <input formControlName="jmbag" type="text" class="form-control">
@@ -95,6 +85,53 @@
               
             
   
+              
+                <label for="memberType">memberType</label>
+                <div class="checkbox">
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Student"
+                        type="radio"
+                        
+                      />
+                      Student
+                    </label>
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Profesor"
+                        type="radio"
+                        
+                      />
+                      Profesor
+                    </label>
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Staff"
+                        type="radio"
+                        
+                      />
+                      Staff
+                    </label>
+                  
+                </div>
+              
+            
+  
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -120,15 +157,6 @@
           <div class="modal-body">
   
   
-            
-              <div class="form-group text-left">
-                <label for="yearOfCollage">yearOfCollage</label>
-  
-                
-                  <input [ngModel]="yearOfCollage" formControlName="yearOfCollage" type="number" class="form-control">
-                
-  
-              </div>
             
               <div class="form-group text-left">
                 <label for="jmbag">jmbag</label>
@@ -186,6 +214,63 @@
   
               </div>
             
+              <div class="form-group text-left">
+                <label for="memberType">memberType</label>
+  
+                
+                  
+                    <div class="row">
+                      <div class="col-xs-12 checkbox">
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Student"
+                            type="radio"
+                            
+                          />
+                          Student
+                        </label>
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Profesor"
+                            type="radio"
+                            
+                          />
+                          Profesor
+                        </label>
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Staff"
+                            type="radio"
+                            
+                          />
+                          Staff
+                        </label>
+                      
+                      </div>
+                    </div>
+                  
+                
+  
+              </div>
+            
   
   
           </div>
@@ -237,7 +322,7 @@
     
     <div class="row">
       <div class="col-md-9">
-          <h1 class="participant-title" id='participantName'>Student</h1>
+          <h1 class="participant-title" id='participantName'>Member</h1>
       </div>
       <div class="col-md-3">
         <button (click)="resetForm()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addParticipantModal">
@@ -257,8 +342,6 @@
           <thead class="thead">
             <tr class="thead-cols">
               
-                  <th class="info">yearOfCollage</th>
-              
                   <th class="info">jmbag</th>
               
                   <th class="info">firstName</th>
@@ -271,14 +354,14 @@
               
                   <th class="info">transactionRevoke</th>
               
+                  <th class="info">memberType</th>
+              
                 <th class="info-actions">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let participant of allParticipants">
   
-              
-                  <td class="participant-properties">{{participant.yearOfCollage}}</td>
               
                   <td class="participant-properties">{{participant.jmbag}}</td>
               
@@ -291,6 +374,8 @@
                   <td class="participant-properties">{{participant.transactionAuthorized}}</td>
               
                   <td class="participant-properties">{{participant.transactionRevoke}}</td>
+              
+                  <td class="participant-properties">{{participant.memberType}}</td>
               
               <td>
                 <button (click)="getForm(participant.jmbag);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateParticipantModal">

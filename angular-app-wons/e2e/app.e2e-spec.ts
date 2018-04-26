@@ -17,37 +17,37 @@ import { ExpectedConditions, browser, element, by } from 'protractor';
 import {} from 'jasmine';
 
 
-describe('Starting tests for angular-app-wons2', function() {
+describe('Starting tests for angular-app-wons', function() {
   let page: AngularTestPage;
 
   beforeEach(() => {
     page = new AngularTestPage();
   });
 
-  it('website title should be angular-app-wons2', () => {
+  it('website title should be angular-app-wons', () => {
     page.navigateTo('/');
     return browser.getTitle().then((result)=>{
-      expect(result).toBe('angular-app-wons2');
+      expect(result).toBe('angular-app-wons');
     })
   });
 
-  it('network-name should be pii-szg-network@0.0.2',() => {
+  it('network-name should be pii-szg-network@0.0.3-deploy.0',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('pii-szg-network@0.0.2.bna');
+      expect(txt).toBe('pii-szg-network@0.0.3-deploy.0.bna');
     });
   });
 
-  it('navbar-brand should be angular-app-wons2',() => {
+  it('navbar-brand should be angular-app-wons',() => {
     element(by.css('.navbar-brand')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('angular-app-wons2');
+      expect(txt).toBe('angular-app-wons');
     });
   });
 
@@ -63,64 +63,28 @@ describe('Starting tests for angular-app-wons2', function() {
       });
     });
 
-    it('UniversityComponent table should have 6 columns',() => {
+    it('UniversityComponent table should have 8 columns',() => {
       page.navigateTo('/UniversityComponent');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
-      });
-    });
-  
-
-  
-    it('Student component should be loadable',() => {
-      page.navigateTo('/Student');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('Student');
-      });
-    });
-
-    it('Student table should have 8 columns',() => {
-      page.navigateTo('/Student');
       element.all(by.css('.thead-cols th')).then(function(arr) {
         expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
       });
     });
   
-    it('Profesor component should be loadable',() => {
-      page.navigateTo('/Profesor');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('Profesor');
-      });
-    });
 
-    it('Profesor table should have 9 columns',() => {
-      page.navigateTo('/Profesor');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(9); // Addition of 1 for 'Action' column
-      });
-    });
   
-    it('Staff component should be loadable',() => {
-      page.navigateTo('/Staff');
+    it('Member component should be loadable',() => {
+      page.navigateTo('/Member');
       browser.findElement(by.id('participantName'))
       .then((participantName) => {
         return participantName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('Staff');
+        expect(txt).toBe('Member');
       });
     });
 
-    it('Staff table should have 8 columns',() => {
-      page.navigateTo('/Staff');
+    it('Member table should have 8 columns',() => {
+      page.navigateTo('/Member');
       element.all(by.css('.thead-cols th')).then(function(arr) {
         expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
       });
@@ -137,10 +101,10 @@ describe('Starting tests for angular-app-wons2', function() {
       });
     });
 
-    it('SystemAdministrator table should have 8 columns',() => {
+    it('SystemAdministrator table should have 9 columns',() => {
       page.navigateTo('/SystemAdministrator');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(8); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(9); // Addition of 1 for 'Action' column
       });
     });
   

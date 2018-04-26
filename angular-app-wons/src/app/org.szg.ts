@@ -8,23 +8,19 @@ import {Event} from './org.hyperledger.composer.system';
       FFZG,
       FSB,
    }
-   export abstract class Member extends Participant {
+   export enum MemberType {
+      Student,
+      Profesor,
+      Staff,
+   }
+   export class Member extends Participant {
       jmbag: string;
       firstName: string;
       lastName: string;
       universityComponent: UniversityComponent;
       transactionAuthorized: string[];
       transactionRevoke: string[];
-   }
-   export class Student extends Member {
-      yearOfCollage: number;
-   }
-   export class Profesor extends Member {
-      title: string;
-      fieldOfJob: string;
-   }
-   export class Staff extends Member {
-      jobPosition: string;
+      memberType: MemberType;
    }
    export class SystemAdministrator extends Member {
       jobPosition: string;
@@ -35,10 +31,12 @@ import {Event} from './org.hyperledger.composer.system';
       ComponentName: string;
       opening: number;
       closing: number;
+      transactionAuthorized: string[];
+      transactionRevoke: string[];
    }
    export abstract class MemberAccess extends Transaction {
-      jmbag: string;
-      universityKey: string;
+      member: Member;
+      universityComponent: UniversityComponent;
    }
    export class AuthorizeAccessFER extends MemberAccess {
    }

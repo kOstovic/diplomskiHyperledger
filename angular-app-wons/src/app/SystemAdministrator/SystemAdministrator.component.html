@@ -95,6 +95,53 @@
               
             
   
+              
+                <label for="memberType">memberType</label>
+                <div class="checkbox">
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Student"
+                        type="radio"
+                        
+                      />
+                      Student
+                    </label>
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Profesor"
+                        type="radio"
+                        
+                      />
+                      Profesor
+                    </label>
+                  
+                    <label>
+                      <input
+                        
+                          formControlName="memberType"
+                        
+                        name="memberType"
+                        value="Staff"
+                        type="radio"
+                        
+                      />
+                      Staff
+                    </label>
+                  
+                </div>
+              
+            
+  
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -186,6 +233,63 @@
   
               </div>
             
+              <div class="form-group text-left">
+                <label for="memberType">memberType</label>
+  
+                
+                  
+                    <div class="row">
+                      <div class="col-xs-12 checkbox">
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Student"
+                            type="radio"
+                            
+                          />
+                          Student
+                        </label>
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Profesor"
+                            type="radio"
+                            
+                          />
+                          Profesor
+                        </label>
+                      
+                        <label>
+                          <input
+                            
+                              formControlName="memberType"
+                              [ngModel]="memberType"
+                            
+                            name="memberType"
+                            value="Staff"
+                            type="radio"
+                            
+                          />
+                          Staff
+                        </label>
+                      
+                      </div>
+                    </div>
+                  
+                
+  
+              </div>
+            
   
   
           </div>
@@ -271,6 +375,8 @@
               
                   <th class="info">transactionRevoke</th>
               
+                  <th class="info">memberType</th>
+              
                 <th class="info-actions">Actions</th>
             </tr>
           </thead>
@@ -291,6 +397,8 @@
                   <td class="participant-properties">{{participant.transactionAuthorized}}</td>
               
                   <td class="participant-properties">{{participant.transactionRevoke}}</td>
+              
+                  <td class="participant-properties">{{participant.memberType}}</td>
               
               <td>
                 <button (click)="getForm(participant.jmbag);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateParticipantModal">

@@ -52,6 +52,14 @@ export class UniversityComponentComponent implements OnInit {
           closing = new FormControl("", Validators.required);
         
   
+      
+          transactionAuthorized = new FormControl("", Validators.required);
+        
+  
+      
+          transactionRevoke = new FormControl("", Validators.required);
+        
+  
 
 
   constructor(private serviceUniversityComponent:UniversityComponentService, fb: FormBuilder) {
@@ -74,7 +82,15 @@ export class UniversityComponentComponent implements OnInit {
         
     
         
-          closing:this.closing
+          closing:this.closing,
+        
+    
+        
+          transactionAuthorized:this.transactionAuthorized,
+        
+    
+        
+          transactionRevoke:this.transactionRevoke
         
     
     });
@@ -154,7 +170,15 @@ export class UniversityComponentComponent implements OnInit {
         
       
         
-          "closing":this.closing.value
+          "closing":this.closing.value,
+        
+      
+        
+          "transactionAuthorized":this.transactionAuthorized.value,
+        
+      
+        
+          "transactionRevoke":this.transactionRevoke.value
         
       
     };
@@ -178,7 +202,15 @@ export class UniversityComponentComponent implements OnInit {
         
       
         
-          "closing":null
+          "closing":null,
+        
+      
+        
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null
         
       
     });
@@ -206,7 +238,15 @@ export class UniversityComponentComponent implements OnInit {
         
       
         
-          "closing":null 
+          "closing":null,
+        
+      
+        
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null 
         
       
       });
@@ -250,7 +290,19 @@ export class UniversityComponentComponent implements OnInit {
     
         
           
-            "closing":this.closing.value
+            "closing":this.closing.value,
+          
+        
+    
+        
+          
+            "transactionAuthorized":this.transactionAuthorized.value,
+          
+        
+    
+        
+          
+            "transactionRevoke":this.transactionRevoke.value
           
         
     
@@ -324,7 +376,15 @@ export class UniversityComponentComponent implements OnInit {
           
         
           
-            "closing":null 
+            "closing":null,
+          
+        
+          
+            "transactionAuthorized":null,
+          
+        
+          
+            "transactionRevoke":null 
           
         
       };
@@ -372,6 +432,22 @@ export class UniversityComponentComponent implements OnInit {
           formObject.closing = null;
         }
       
+        if(result.transactionAuthorized){
+          
+            formObject.transactionAuthorized = result.transactionAuthorized;
+          
+        }else{
+          formObject.transactionAuthorized = null;
+        }
+      
+        if(result.transactionRevoke){
+          
+            formObject.transactionRevoke = result.transactionRevoke;
+          
+        }else{
+          formObject.transactionRevoke = null;
+        }
+      
 
       this.myForm.setValue(formObject);
 
@@ -410,7 +486,15 @@ export class UniversityComponentComponent implements OnInit {
         
       
         
-          "closing":null 
+          "closing":null,
+        
+      
+        
+          "transactionAuthorized":null,
+        
+      
+        
+          "transactionRevoke":null 
         
       
       });
