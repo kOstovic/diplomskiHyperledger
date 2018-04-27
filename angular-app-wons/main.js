@@ -15,12 +15,21 @@ const BusinessNetworkConnection = require('composer-client').BusinessNetworkConn
 			var assetFER = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0036');
 			assetFER.opening = 500;
 			assetFER.closing = 2300;
+			assetFER.universityName = "FER";
 			// Create a new relationship for the owner
 			let FERRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0036');
 			
 			var assetFSB = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0035');
-			assetFSB.opening = 800;
+			assetFSB.opening = 700;
 			assetFSB.closing = 2100;
+			assetFSB.universityName = "FSB";
+			let FSBRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0035');
+
+			var assetFFZG = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0035');
+			assetFFZGopening = 800;
+			assetFFZG.closing = 2000;
+			assetFFZG.universityName = "FFZG";
+			let FFZGRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:1111');
 			
 			await this.assetRegistry.addAll([assetFER, assetFSB]);
 			
@@ -30,6 +39,20 @@ const BusinessNetworkConnection = require('composer-client').BusinessNetworkConn
 			somebody.memberType = 'Student';
 			somebody.universityComponent = FERRelation;
 			await memberRegistry.add(somebody);
+
+			var somebody2 = factory.newResource('org.szg', 'Member', 'jmbag:0036555555');
+			somebody2.firstName = 'ana';
+			somebody2.lastName = 'anic';
+			somebody2.memberType = 'Profesor';
+			somebody2.universityComponent = FERRelation;
+			await memberRegistry.add(somebody2);
+
+			var somebody3 = factory.newResource('org.szg', 'Member', 'jmbag:1111223322');
+			somebody3.firstName = 'filozof';
+			somebody3.lastName = 'filozofic';
+			somebody3.memberType = 'Student';
+			somebody3.universityComponent = FFZGRelation;
+			await memberRegistry.add(somebody3);
 		}
 		catch(error) {
 			console.log(error);
