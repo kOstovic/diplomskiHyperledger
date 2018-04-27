@@ -31,7 +31,7 @@ const BusinessNetworkConnection = require('composer-client').BusinessNetworkConn
 			assetFFZG.universityName = "FFZG";
 			let FFZGRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:1111');
 			
-			await this.assetRegistry.addAll([assetFER, assetFSB]);
+			await this.assetRegistry.addAll([assetFER, assetFSB, FFZG]);
 			
 			var somebody = factory.newResource('org.szg', 'Member', 'jmbag:0036444444');
 			somebody.firstName = 'marko';
@@ -53,6 +53,16 @@ const BusinessNetworkConnection = require('composer-client').BusinessNetworkConn
 			somebody3.memberType = 'Student';
 			somebody3.universityComponent = FFZGRelation;
 			await memberRegistry.add(somebody3);
+
+			this.memberRegistry2 = await this.bizNetworkConnection.getParticipantRegistry('org.szg.SystemAdministrator');
+			var somebody4 = factory.newResource('org.szg', "SystemAdministrator");
+			var somebody4 = factory.newResource('org.szg', "SystemAdministrator", 'jmbag:1111000000');
+			somebody4.firstName = 'sistemski';
+			somebody4.lastName = 'adminic';
+			somebody4.memberType = 'Staff';
+			somebody4.universityComponent = FFZGRelation;
+			somebody4.jobPosition = "sistemAdmin";
+			await memberRegistry2.add(somebody4);
 		}
 		catch(error) {
 			console.log(error);

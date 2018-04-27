@@ -27,6 +27,15 @@ rule EverybodyCanSubmitTransactions {
     resource: "org.szg.*"
     action: ALLOW
 }
+/*
+rule EverybodyCanReadTheirAssets {
+    description: "Allow all participants read access to their assets"
+    participant(p): "org.szg.*"
+    operation: READ
+    resource(r): "org.szg.*"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}*/
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
