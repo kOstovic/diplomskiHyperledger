@@ -21,6 +21,8 @@ const http = require('http');
 const path = require('path');
 const proxy = require('http-proxy-middleware');
 const proxyConfig = require('./proxy.conf.js');
+const BusinessNetworkConnection2 = require('composer-client').BusinessNetworkConnection;
+const winston = require('winston');
 
 const app = express();
 const appEnv = cfenv.getAppEnv();
