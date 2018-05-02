@@ -22,6 +22,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script type="text/javascript" src="https://rawgit.com/kOstovic/diplomskiHyperledger/master/angular-app-wons/src/bundleComposer2.js"></script>
 <script> 
+const BusinessNetworkConnection2 = requirejs('composer-client').BusinessNetworkConnection;
 async function beginer() 
 	{ 
 		try {
@@ -92,7 +93,7 @@ async function beginer()
 		}
 	}	
 	
-	function checkTransaction(){
+	async function checkTransaction(){
 
 		this.bizNetworkConnection = new BusinessNetworkConnection();
 		const cardName = "admin@pii-szg-network";
