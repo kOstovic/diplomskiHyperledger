@@ -27,16 +27,6 @@
   
               
                 <div class="form-group text-left">
-                  <label for="jobPosition">jobPosition</label>
-                  
-                    <input formControlName="jobPosition" type="text" class="form-control">
-                  
-                </div>
-              
-            
-  
-              
-                <div class="form-group text-left">
                   <label for="jmbag">jmbag</label>
                   
                     <input formControlName="jmbag" type="text" class="form-control">
@@ -60,6 +50,16 @@
                   <label for="lastName">lastName</label>
                   
                     <input formControlName="lastName" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
+              
+                <div class="form-group text-left">
+                  <label for="jobPosition">jobPosition</label>
+                  
+                    <input formControlName="jobPosition" type="text" class="form-control">
                   
                 </div>
               
@@ -145,7 +145,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button (click)="addParticipant(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">Confirm</button>
+            <button (click)="addParticipant(myForm);" type="submit" class="btn btn-success" value="Refresh Page" onClick="setTimeout(window.location.reload.bind(window.location), 2000);" data-dismiss="modal">Confirm</button>
   
           </div>
         </form>
@@ -167,15 +167,6 @@
           <div class="modal-body">
   
   
-            
-              <div class="form-group text-left">
-                <label for="jobPosition">jobPosition</label>
-  
-                
-                  <input [ngModel]="jobPosition"formControlName="jobPosition" type="text" class="form-control">
-                
-  
-              </div>
             
               <div class="form-group text-left">
                 <label for="jmbag">jmbag</label>
@@ -200,6 +191,15 @@
   
                 
                   <input [ngModel]="lastName"formControlName="lastName" type="text" class="form-control">
+                
+  
+              </div>
+            
+              <div class="form-group text-left">
+                <label for="jobPosition">jobPosition</label>
+  
+                
+                  <input [ngModel]="jobPosition"formControlName="jobPosition" type="text" class="form-control">
                 
   
               </div>
@@ -295,7 +295,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button (click)="updateParticipant(myForm)" type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+            <button (click)="updateParticipant(myForm)" type="submit" class="btn btn-success" value="Refresh Page" onClick="setTimeout(window.location.reload.bind(window.location), 2000);" data-dismiss="modal">Submit</button>
           </div>
         </form>
       </div>
@@ -317,7 +317,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <button (click)="deleteParticipant()" type="submit" class="btn btn-danger" data-dismiss="modal">Yes</button>
+            <button (click)="deleteParticipant()" type="submit" class="btn btn-danger" value="Refresh Page" onClick="setTimeout(window.location.reload.bind(window.location), 2000);" data-dismiss="modal">Yes</button>
           </div>
         </form>
       </div>
@@ -361,13 +361,13 @@
           <thead class="thead">
             <tr class="thead-cols">
               
-                  <th class="info">jobPosition</th>
-              
                   <th class="info">jmbag</th>
               
                   <th class="info">firstName</th>
               
                   <th class="info">lastName</th>
+              
+                  <th class="info">jobPosition</th>
               
                   <th class="info">universityComponent</th>
               
@@ -384,13 +384,13 @@
             <tr *ngFor="let participant of allParticipants">
   
               
-                  <td class="participant-properties">{{participant.jobPosition}}</td>
-              
                   <td class="participant-properties">{{participant.jmbag}}</td>
               
                   <td class="participant-properties">{{participant.firstName}}</td>
               
                   <td class="participant-properties">{{participant.lastName}}</td>
+              
+                  <td class="participant-properties">{{participant.jobPosition}}</td>
               
                   <td class="participant-properties">{{participant.universityComponent}}</td>
               

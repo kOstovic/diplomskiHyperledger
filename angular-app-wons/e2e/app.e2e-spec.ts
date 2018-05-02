@@ -31,13 +31,13 @@ describe('Starting tests for angular-app-wons', function() {
     })
   });
 
-  it('network-name should be pii-szg-network@0.0.3-deploy.0',() => {
+  it('network-name should be pii-szg-network@0.0.9',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('pii-szg-network@0.0.3-deploy.0.bna');
+      expect(txt).toBe('pii-szg-network@0.0.9.bna');
     });
   });
 

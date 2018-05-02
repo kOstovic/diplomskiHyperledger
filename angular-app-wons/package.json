@@ -1,6 +1,7 @@
 {
   "name": "angular-app-wons",
-  "description": "Hyperledger Composer Angular project",
+  "description": "Website for pii-szg-network",
+  "main": "app.js",
   "version": "0.0.1",
   "author": "ja",
   "email": "ja@ja",
@@ -34,7 +35,8 @@
     "@angular/router": "^4.0.0",
     "bootstrap": "^3.3.7",
     "cfenv": "^1.0.4",
-    "composer-client": "^0.19.2",
+    "composer-client": "^0.19.4",
+    "composer-common": "^0.19.4",
     "concurrently": "^3.1.0",
     "config": "^1.21.0",
     "core-js": "^2.4.1",
@@ -43,6 +45,7 @@
     "jquery": "^3.2.1",
     "rxjs": "^5.1.0",
     "tether": "^1.4.0",
+    "winston": "^2.4.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

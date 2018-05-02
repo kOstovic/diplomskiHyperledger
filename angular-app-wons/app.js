@@ -54,7 +54,3 @@ proxyConfig.forEach((element) => {
 server.listen(appEnv.port, function () {
     console.log('server starting on ' + appEnv.url);
 });
-
-const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
-
-

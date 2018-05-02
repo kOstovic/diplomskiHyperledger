@@ -33,10 +33,6 @@ export class SystemAdministratorComponent implements OnInit {
 
   
       
-          jobPosition = new FormControl("", Validators.required);
-        
-  
-      
           jmbag = new FormControl("", Validators.required);
         
   
@@ -46,6 +42,10 @@ export class SystemAdministratorComponent implements OnInit {
   
       
           lastName = new FormControl("", Validators.required);
+        
+  
+      
+          jobPosition = new FormControl("", Validators.required);
         
   
       
@@ -70,10 +70,6 @@ export class SystemAdministratorComponent implements OnInit {
     this.myForm = fb.group({
     
         
-          jobPosition:this.jobPosition,
-        
-    
-        
           jmbag:this.jmbag,
         
     
@@ -83,6 +79,10 @@ export class SystemAdministratorComponent implements OnInit {
     
         
           lastName:this.lastName,
+        
+    
+        
+          jobPosition:this.jobPosition,
         
     
         
@@ -162,10 +162,6 @@ export class SystemAdministratorComponent implements OnInit {
       $class: "org.szg.SystemAdministrator",
       
         
-          "jobPosition":this.jobPosition.value,
-        
-      
-        
           "jmbag":this.jmbag.value,
         
       
@@ -175,6 +171,10 @@ export class SystemAdministratorComponent implements OnInit {
       
         
           "lastName":this.lastName.value,
+        
+      
+        
+          "jobPosition":this.jobPosition.value,
         
       
         
@@ -198,10 +198,6 @@ export class SystemAdministratorComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "jobPosition":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -211,6 +207,10 @@ export class SystemAdministratorComponent implements OnInit {
       
         
           "lastName":null,
+        
+      
+        
+          "jobPosition":null,
         
       
         
@@ -238,10 +238,6 @@ export class SystemAdministratorComponent implements OnInit {
       this.myForm.setValue({
       
         
-          "jobPosition":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -251,6 +247,10 @@ export class SystemAdministratorComponent implements OnInit {
       
         
           "lastName":null,
+        
+      
+        
+          "jobPosition":null,
         
       
         
@@ -288,12 +288,6 @@ export class SystemAdministratorComponent implements OnInit {
       
         
           
-            "jobPosition":this.jobPosition.value,
-          
-        
-    
-        
-          
         
     
         
@@ -305,6 +299,12 @@ export class SystemAdministratorComponent implements OnInit {
         
           
             "lastName":this.lastName.value,
+          
+        
+    
+        
+          
+            "jobPosition":this.jobPosition.value,
           
         
     
@@ -386,10 +386,6 @@ export class SystemAdministratorComponent implements OnInit {
       let formObject = {
         
           
-            "jobPosition":null,
-          
-        
-          
             "jmbag":null,
           
         
@@ -399,6 +395,10 @@ export class SystemAdministratorComponent implements OnInit {
         
           
             "lastName":null,
+          
+        
+          
+            "jobPosition":null,
           
         
           
@@ -422,14 +422,6 @@ export class SystemAdministratorComponent implements OnInit {
 
 
       
-        if(result.jobPosition){
-          
-            formObject.jobPosition = result.jobPosition;
-          
-        }else{
-          formObject.jobPosition = null;
-        }
-      
         if(result.jmbag){
           
             formObject.jmbag = result.jmbag;
@@ -452,6 +444,14 @@ export class SystemAdministratorComponent implements OnInit {
           
         }else{
           formObject.lastName = null;
+        }
+      
+        if(result.jobPosition){
+          
+            formObject.jobPosition = result.jobPosition;
+          
+        }else{
+          formObject.jobPosition = null;
         }
       
         if(result.universityComponent){
@@ -508,10 +508,6 @@ export class SystemAdministratorComponent implements OnInit {
     this.myForm.setValue({
       
         
-          "jobPosition":null,
-        
-      
-        
           "jmbag":null,
         
       
@@ -521,6 +517,10 @@ export class SystemAdministratorComponent implements OnInit {
       
         
           "lastName":null,
+        
+      
+        
+          "jobPosition":null,
         
       
         

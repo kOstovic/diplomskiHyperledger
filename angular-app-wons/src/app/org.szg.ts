@@ -22,8 +22,15 @@ import {Event} from './org.hyperledger.composer.system';
       transactionRevoke: string[];
       memberType: MemberType;
    }
-   export class SystemAdministrator extends Member {
+   export class SystemAdministrator extends Participant {
+      jmbag: string;
+      firstName: string;
+      lastName: string;
       jobPosition: string;
+      universityComponent: UniversityComponent;
+      transactionAuthorized: string[];
+      transactionRevoke: string[];
+      memberType: MemberType;
    }
    export class UniversityComponent extends Asset {
       universityKey: string;
