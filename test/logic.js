@@ -11,12 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
+
 'use strict';
 /**
  * Write the unit tests for your transction processor functions here
  */
-/*
+
 const AdminConnection = require('composer-admin').AdminConnection;
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const { BusinessNetworkDefinition, CertificateUtil, IdCard } = require('composer-common');
@@ -56,10 +56,12 @@ describe('#' + namespace, () => {
     // This is the factory for creating instances of types.
     let factory;
 
-    // These are the identities for Alice and Bob.
+    // These are the identities for people
     const ferovacCardName = '0036444555';
     const ferovacProfesorCardName = '0036555555';
     const filozofCardName = '1111223322';
+    const filozofSystemCardName = '1111220000';
+    const filozofStaffCardName = '1111000000';
 
     // These are a list of receieved events.
     let events;
@@ -90,7 +92,7 @@ describe('#' + namespace, () => {
      *
      * @param {String} cardName The card name to use for this identity
      * @param {Object} identity The identity details
-     *//*
+     */
     async function importCardForIdentity(cardName, identity) {
         const metadata = {
             userName: identity.userID,
@@ -174,17 +176,24 @@ describe('#' + namespace, () => {
 	somebody3.memberType = 'Student';
 	somebody3.universityComponent = FFZGRelation;
 
-        participantRegistry.addAll([somebody, somebody2, somebody3]);
 	
 	const participantRegistry2 = await businessNetworkConnection.getParticipantRegistry(participantNS2);
-	var somebody4 = factory.newResource(namespace, participantType2);
 	var somebody4 = factory.newResource(namespace, participantType2, 'jmbag:1111000000');
 	somebody4.firstName = 'sistemski';
 	somebody4.lastName = 'adminic';
 	somebody4.memberType = 'Staff';
 	somebody4.universityComponent = FFZGRelation;
 	somebody4.jobPosition = "sistemAdmin";
-	await memberRegistry2.add(somebody4);
+    await memberRegistry2.add(somebody4);
+    
+
+	var somebody5 = factory.newResource(namespace, participantType, 'jmbag:1111220000');
+	somebody5.firstName = 'cistacica';
+	somebody5.lastName = 'cistac';
+	somebody5.memberType = 'Staff';
+    somebody5.universityComponent = FFZGRelation;
+    
+	participantRegistry.addAll([somebody, somebody2, somebody3,somebody5]);
 
 
         // Issue the identities.
@@ -194,12 +203,16 @@ describe('#' + namespace, () => {
         await importCardForIdentity(ferovacProfesorCardName, identity);
         identity = await businessNetworkConnection.issueIdentity(participantNS + '#1111223322', 'filozoffilozofic');
         await importCardForIdentity(filozofCardName, identity);
+        identity = await businessNetworkConnection.issueIdentity(participantNS2 + '#1111000000', 'sistemskiadminic');
+        await importCardForIdentity(filozofSystemCardName, identity);
+        identity = await businessNetworkConnection.issueIdentity(participantNS + '#1111220000', 'cistacicacistac');
+        await importCardForIdentity(filozofStaffCardName, identity);
     });
 
     /**
      * Reconnect using a different identity.
      * @param {String} cardName The name of the card for the identity to use
-     *//*
+     */
     async function useIdentity(cardName) {
         await businessNetworkConnection.disconnect();
         businessNetworkConnection = new BusinessNetworkConnection({ cardStore: cardStore });
@@ -226,7 +239,7 @@ describe('#' + namespace, () => {
         const asset3 = assets[2];
         asset1.universityName.should.equal('FFZG');
     });
-    it('Bob can submit a transaction for his assets', async () => {
+    it('ferovacCardName can submit a transaction for his assets', async () => {
         // Use the identity for ferovacCardName.
         await useIdentity(ferovacCardName);
 
@@ -242,7 +255,7 @@ describe('#' + namespace, () => {
 
         // Validate the asset.
         asset1.universityName.should.equal('FER');
-	asset1.transactionAuthorized.should.have.lengthOf(1);
+	    asset1.transactionAuthorized.should.have.lengthOf(1);
 
         // Validate the events.
         events.should.have.lengthOf(1);
@@ -251,4 +264,54 @@ describe('#' + namespace, () => {
         //event.timestamp.should.be.an.instanceOf(Date);
         event.memberAccess.universityComponent.universityName.should.equal('FER');
     });
-});*/
+    it('ferovacProfesorCardName can submit a transaction for his assets', async () => {//
+        // Use the identity for ferovacProfesorCardName.
+        await useIdentity(ferovacProfesorCardName);
+
+        // Submit the transaction.
+        const transaction = factory.newTransaction(namespace, 'AuthorizeAccessFFZG');
+        transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:0036555555');
+        transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:1111');
+        await businessNetworkConnection.submitTransaction(transaction);
+
+        // Get the asset.
+        const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
+        const asset1 = await assetRegistry.get('1111');
+
+        // Validate the asset.
+        asset1.universityName.should.equal('FFZG');
+	    asset1.transactionAuthorized.should.have.lengthOf(1);
+
+        // Validate the events.
+        events.should.have.lengthOf(1);
+        const event = events[0];
+        //event.eventId.should.be.a('string');
+        //event.timestamp.should.be.an.instanceOf(Date);
+        event.memberAccess.universityComponent.universityName.should.equal('FER');
+    });
+    it('filozofStaffCardName submit a RevokeAccessFER transaction for his assets', async () => {//
+        // Use the identity for ferovacCardName.
+        await useIdentity(filozofStaffCardName);
+
+        // Submit the transaction.
+        const transaction = factory.newTransaction(namespace, 'RevokeAccessFER');
+        transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:1111220000');
+        transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:0036');
+        await businessNetworkConnection.submitTransaction(transaction);
+
+        // Get the asset.
+        const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
+        const asset1 = await assetRegistry.get('0036');
+
+        // Validate the asset.
+        asset1.universityName.should.equal('FER');
+	    asset1.transactionAuthorized.should.have.lengthOf(1);
+
+        // Validate the events.
+        events.should.have.lengthOf(1);
+        const event = events[0];
+        //event.eventId.should.be.a('string');
+        //event.timestamp.should.be.an.instanceOf(Date);
+        event.memberAccess.universityComponent.universityName.should.equal('FER');
+    });
+});

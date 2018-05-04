@@ -1,3 +1,4 @@
+//config var for path in REST API
 var conn = "http://localhost:3000/";
 var api = "api/";
 var prefixApp = "org.szg";
@@ -14,33 +15,7 @@ var postUniversityComponent = api+"UniversityComponent";
 var postMember = api+"Member";
 var postSystemAdministrator = api+"SystemAdministrator";
 
-/*{
-  "$class": "org.szg.Member",
-  "jmbag": "0066557466",
-  "firstName": "lo",
-  "lastName": "ji",
-  "universityComponent": "resource:org.szg.UniversityComponent#0011",
-  "memberType": "Student"
-}*/
-
-/*
-{
-	"$class": "org.szg.AuthorizeAccessFER",
-	"member": "resource:org.szg.Member#7759",
-	"universityComponent": "resource:org.szg.UniversityComponent#1688"
-}*/
-
-/*var obj = new Object();
-obj.name = "Raj";
-obj.age = 32;
-obj.married = false;
-
-//convert object to json string
-var string = JSON.stringify(obj);
-
-//convert string to Json Object
-console.log(JSON.parse(string)); // this is your requirement.
-*/
+//async functions for GET and POST methods
 async function fetchAsync (url) {
 	let response = await fetch(url);
 	let data = await response.json();
@@ -59,6 +34,7 @@ async function postAsync (url,formData) {
 	return data;
 }
 
+//function for first time run creating users and assest
 	async function beginer() 
 	{ 
 		try {
@@ -80,7 +56,7 @@ async function postAsync (url,formData) {
 			assetFER.opening = 500;
 			assetFER.closing = 2300;
 
-			//convert object to json string
+			//convert object to json string and send it to server
 			stringPost = JSON.stringify(assetFER);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
 			/*var assetFER = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0036');
@@ -96,7 +72,7 @@ async function postAsync (url,formData) {
 			assetFSB.opening = 700;
 			assetFSB.closing = 2100;
 
-			//convert object to json string
+			//convert object to json string 
 			stringPost = JSON.stringify(assetFSB);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
 			/*var assetFSB = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0035');
@@ -200,18 +176,22 @@ async function postAsync (url,formData) {
 		}
 	}	
 	
+	//function with logic for accepting or revoking access
 	async function checkTransaction(){
 
 		/*this.bizNetworkConnection = new BusinessNetworkConnection();
 		const cardName = "admin@pii-szg-network";
 		this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardName);*/
 		
+		//get input
 		var jmbag = document.getElementById('jmbag').value;
 		var universityKey = document.getElementById('universityKey').value;
 		
 		try {
 			//let registryMember = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
 			//let resultMember = registryMember.get('jmbag:'+jmbag);
+
+			//get member and asset from input
 			let resultMemberArray = await fetchAsync(conn+querySelectMember+jmbag);
 			let resultMember = resultMemberArray[0];
 			//let registryUniversityComponent = await this.bizNetworkConnection.getAssetRegistry('org.szg.UniversityComponent');
@@ -221,6 +201,7 @@ async function postAsync (url,formData) {
 
 			let methodCall;
 			let access = false;
+			//get current time
 			var d = new Date();
 			let ttime = d.getHours()*100+d.getMinutes();
 			
@@ -229,6 +210,11 @@ async function postAsync (url,formData) {
 			if(!me) {
         		throw new Error('Non existant user.');
 			}*/
+			//logic
+			//1. if person is accessing its own university and it is a student check time can he enter, 
+			//if he is staff or profesor he can enter without time checking 
+			//2. if person if profesor or student, it can enter on any university in opened times
+			//3. if person is entering fer, it can enter on any given time if it is opened
 			var strKey = resultMember.universityComponent;
 			var numUniversityComponentKey = strKey.replace(/[^0-9]/g, ''); 
 			if(numUniversityComponentKey == universityKey){
@@ -260,7 +246,8 @@ async function postAsync (url,formData) {
 				}
 				else access = true;
 			}
-
+			
+			//call function that will call transaction
 			if(access == true)
 				methodCall = "AuthorizeAccess"+resultUniversityComponent.universityName;
 			else 
@@ -273,6 +260,7 @@ async function postAsync (url,formData) {
 
 	}
 	
+	//function that is calling transasction from REST API
 	async function callTrasaction(_method, _jmbag, _universityKey){
 		try {
 

@@ -37,33 +37,6 @@ var postUniversityComponent = api+"UniversityComponent";
 var postMember = api+"Member";
 var postSystemAdministrator = api+"SystemAdministrator";
 
-/*{
-  "$class": "org.szg.Member",
-  "jmbag": "0066557466",
-  "firstName": "lo",
-  "lastName": "ji",
-  "universityComponent": "resource:org.szg.UniversityComponent#0011",
-  "memberType": "Student"
-}*/
-
-/*
-{
-	"$class": "org.szg.AuthorizeAccessFER",
-	"member": "resource:org.szg.Member#7759",
-	"universityComponent": "resource:org.szg.UniversityComponent#1688"
-}*/
-
-/*var obj = new Object();
-obj.name = "Raj";
-obj.age = 32;
-obj.married = false;
-
-//convert object to json string
-var string = JSON.stringify(obj);
-
-//convert string to Json Object
-console.log(JSON.parse(string)); // this is your requirement.
-*/
 async function fetchAsync (url) {
 	let response = await fetch(url);
 	let data = await response.json();
@@ -318,12 +291,13 @@ async function postAsync (url,formData) {
 			trans.universityComponent = relationshipUniversityComponent+_universityKey;
 			var stringTrans = JSON.stringify(trans);
 			resultPostArray = await postAsync(conn+api+_method,stringTrans);
-			console.log(resultPostArray);
+			//console.log(resultPostArray);
 		} catch (error) {
 			console.log(error);
 			throw error;
 		}
 	}
+
 
 </script>
 </head>
