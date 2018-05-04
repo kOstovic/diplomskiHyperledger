@@ -59,62 +59,6 @@ server.listen(appEnv.port, function () {
 
 	async function checkTransaction(){
 
-		this.bizNetworkConnection = new BusinessNetworkConnection();
-		const cardName = "admin@pii-szg-network";
-		this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardName);
-		
-		var jmbag = document.getElementById('jmbag').value;
-		var universityKey = document.getElementById('universityKey').value;
 
-		try {
-			let registryMember = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
-			let resultMember = registryMember.get('jmbag:'+jmbag);
-			let registryUniversityComponent = await this.bizNetworkConnection.getAssetRegistry('org.szg.UniversityComponent');
-			let resultUniversityComponent = registryUniversityComponent.get('universityKey:'+universityKey);
-		
-			let methodCall;
-			let access = false;
-			var d = new Date();
-			let ttime = d.getHours()*100+d.getMinutes();
-			
-			//logic for Access entry 
-			var me = await query('selectMember',{jmbagParam : resultMember.jmbag});
-			if(!me) {
-        		throw new Error('Non existant user.');
-			}
-			if(me.universityComponent.universityKey == universityKey){
-				let isOpened = await query('selectIsOpened',{universityKeyparam : resultUniversityComponent.universityKey,timeparam : ttime});
-				if(!isOpened) {
-					access = false;
-				}
-				else access = true;
-				
-				if(resultMember.memberType == "Profesor" || resultMember.memberType == "Staff")
-					access = true;
-			}
-			else if(resultMember.memberType == "Profesor" || resultMember.memberType == "Student"){
-				let isOpened = await query('selectIsOpened',{universityKeyparam : resultUniversityComponent.universityKey,timeparam : ttime});
-				if(!isOpened) {
-					access = false;
-				}
-				else access = true;
-			}
-			else if(resultUniversityComponent.universityName == "FER"){
-				let isOpened = await query('selectIsFEROpened',{timeparam : ttime});
-				if(!isOpened) {
-					access = false;
-				}
-				else access = true;
-			}
-
-			if(access == true)
-				methodCall = "AuthorizeAccess"+resultUniversityComponent.universityName;
-			else 
-				methodCall = "RevokeAccess"+resultUniversityComponent.universityName;	
-			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey);
-		} catch (error) {
-			console.log(error);
-			throw error;	
-		}
 
 	}

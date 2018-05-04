@@ -4,37 +4,32 @@
 
 #Access control network for sveuciliste u zagrebu for thesis on FER
 
-#direktorij fabric-dev-servers sa githuba kopirati u ~/fabric-dev-servers 
-    cd ~/fabric-dev-servers	
+#direktorij fabric-samples sa githuba skinuti u ~/fabric-samples
+#https://hyperledger.github.io/composer/latest/tutorials/deploy-to-fabric-multi-org
+#uklanja stare instalacije	
     docker kill $(docker ps -q)
     docker rm $(docker ps -aq)
     docker rmi $(docker images dev-* -q)
-    ./startFabric.sh
+    rm -fr $HOME/.composer
 
-# Create the channel
-docker exec peer1.org1.example.com peer channel create -o orderer.example.com:7050 -c composerchannel -f /etc/hyperledger/configtx/composer-channel.tx
-# Join peer1.org1.example.com to the channel.
-docker exec -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/users/Admin@org1.example.com/msp" peer1.org1.example.com peer channel join -b composerchannel.block
+#podiže nove instalacije
+./byfn.sh -m generate
+./byfn.sh -m up -s couchdb -a
+./byfn.sh -m up
+./byfn.sh -m up -f docker-compose-cas.yaml
+#ostatak pratiti po uputama osim endoresment dijela i staviti za network da se zove pii-szg-network uz verziju 0.1.0.bna
 
-#kopirati composerchannel.block sa jednog peera na drugi
-docker cp peer1.org1.example.com:/opt/gopath/src/github.com/hyperledger/fabric/composerchannel.block /tmp/composerchannel.block
-docker cp /tmp/composerchannel.block peer0.org1.example.com:/opt/gopath/src/github.com/hyperledger/fabric/composerchannel.block
-
-# Join peer0.org1.example.com to the channel.
-docker exec -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/users/Admin@org1.example.com/msp" peer0.org1.example.com peer channel join -b composerchannel.block
-
-    ./createPeerAdminCard.sh
 #biti u direktoriju pii-szg-network
 
 composer archive create -t dir -n .
 
-composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.1.0.bna
+#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.1.0.bna
 
-composer network start --networkName pii-szg-network --networkVersion 0.1.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+#composer network start --networkName pii-szg-network --networkVersion 0.1.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card #PeerAdmin@hlfv1 --file networkadmin.card
 
-composer card import --file networkadmin.card
+#composer card import --file networkadmin.card
 
-composer network ping --card admin@pii-szg-network
+#composer network ping --card admin@pii-szg-network
 
 composer-rest-server
 
@@ -66,4 +61,6 @@ yo hyperledger-composer:angular
 
 #Select Namespaces are not used
 
+cd angular-app-wons
+npm start
 
