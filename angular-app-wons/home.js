@@ -14,6 +14,8 @@ var relationshipUniversityComponent = "resource:"+prefixApp+".UniversityComponen
 var postUniversityComponent = api+"UniversityComponent";
 var postMember = api+"Member";
 var postSystemAdministrator = api+"SystemAdministrator";
+const hour = 3600;
+const minute = 60;
 
 //async functions for GET and POST methods
 async function fetchAsync (url) {
@@ -53,15 +55,15 @@ async function postAsync (url,formData) {
 			assetFER.$class = 'org.szg.UniversityComponent';
 			assetFER.universityKey = "0036";
 			assetFER.universityName = "FER";
-			assetFER.opening = 500;
-			assetFER.closing = 2300;
+			assetFER.opening = 5*hour;
+			assetFER.closing = 23*hour;
 
 			//convert object to json string and send it to server
 			stringPost = JSON.stringify(assetFER);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
 			/*var assetFER = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0036');
-			assetFER.opening = 500;
-			assetFER.closing = 2300;
+			assetFER.opening = 5*hour;
+			assetFER.closing = 23*hour;
 			assetFER.universityName = "FER";
 			// Create a new relationship for the owner
 			let FERRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0036');*/
@@ -69,30 +71,30 @@ async function postAsync (url,formData) {
 			assetFSB.$class = 'org.szg.UniversityComponent';
 			assetFSB.universityKey = "0035";
 			assetFSB.universityName = "FSB";
-			assetFSB.opening = 700;
-			assetFSB.closing = 2100;
+			assetFSB.opening = 7*hour;
+			assetFSB.closing = 21*hour;
 
 			//convert object to json string 
 			stringPost = JSON.stringify(assetFSB);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
 			/*var assetFSB = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0035');
-			assetFSB.opening = 700;
-			assetFSB.closing = 2100;
+			assetFSB.opening = 7*hour;
+			assetFSB.closing = 21*hour;
 			assetFSB.universityName = "FSB";
 			let FSBRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0035');*/
 			var assetFFZG = new Object();
 			assetFFZG.$class = 'org.szg.UniversityComponent';
 			assetFFZG.universityKey = "1111";
 			assetFFZG.universityName = "FFZG";
-			assetFFZG.opening = 800;
-			assetFFZG.closing = 2000;
+			assetFFZG.opening = 8*hour;
+			assetFFZG.closing = 20*hour;
 
 			//convert object to json string
 			stringPost = JSON.stringify(assetFFZG);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
 			/*var assetFFZG = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:1111');
-			assetFFZGopening = 800;
-			assetFFZG.closing = 2000;
+			assetFFZG.opening = 8*hour;
+			assetFFZG.closing = 20*hour;
 			assetFFZG.universityName = "FFZG";
 			let FFZGRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:1111');*/
 			
@@ -203,7 +205,7 @@ async function postAsync (url,formData) {
 			let access = false;
 			//get current time
 			var d = new Date();
-			let ttime = d.getHours()*100+d.getMinutes();
+			let ttime = d.getHours()*hour+d.getMinutes()*minute;
 			
 			//logic for Access entry 
 			/*var me = await query('selectMember',{jmbagParam : resultMember.jmbag});

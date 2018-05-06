@@ -73,8 +73,8 @@ asset UniversityComponent identified by universityKey {
   o String universityKey regex=/[0-9]{4}/
   o UniversityComponentName universityName
   o String ComponentName optional
-  o Integer opening range=[0,2359]
-  o Integer closing range=[0,2359]
+  o Integer opening range=[0,86400]
+  o Integer closing range=[0,86400]
   o String[] transactionAuthorized optional
   o String[] transactionRevoke optional
 } 

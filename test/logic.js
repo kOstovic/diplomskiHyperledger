@@ -33,6 +33,8 @@ const participantType = 'Member';
 const participantType2 = 'SystemAdministrator';
 const participantNS = namespace + '.' + participantType;
 const participantNS2 = namespace + '.' + participantType2;
+const hour = 3600;
+const minutes = 60;
 
 describe('#' + namespace, () => {
     // In-memory card store for testing so cards are not persisted to the file system
@@ -135,21 +137,21 @@ describe('#' + namespace, () => {
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
 
 	const assetFER = factory.newResource('org.szg', assetType, 'universityKey:0036');
-	assetFER.opening = 500;
-	assetFER.closing = 2300;
+	assetFER.opening = 5*hour;
+	assetFER.closing = 23*hour;
 	assetFER.universityName = "FER";
 	// Create a new relationship for the owner
 	const FERRelation = factory.newRelationship(namespace, assetType, 'universityKey:0036');
 			
 	const assetFSB = factory.newResource(namespace, assetType, 'universityKey:0035');
-	assetFSB.opening = 700;
-	assetFSB.closing = 2100;
+	assetFSB.opening = 7*hour;
+	assetFSB.closing = 21*hour;
 	assetFSB.universityName = "FSB";
 	const FSBRelation = factory.newRelationship(namespace, assetType, 'universityKey:0035');
 
 	const assetFFZG = factory.newResource(namespace, assetType, 'universityKey:0035');
-	assetFFZGopening = 800;
-	assetFFZG.closing = 2000;
+	assetFFZGopening = 8*hour;
+	assetFFZG.closing = 20*hour;
 	assetFFZG.universityName = "FFZG";
 	const FFZGRelation = factory.newRelationship(namespace, assetType, 'universityKey:1111');
 
