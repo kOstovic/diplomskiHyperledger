@@ -223,60 +223,9 @@ async function postAsync (url,formData) {
 			//let resultUniversityComponent = registryUniversityComponent.get('universityKey:'+universityKey);
 			let resultUniversityComponentArray  = await fetchAsync(conn+querySelectUniversityComponent+universityKey);
 			let resultUniversityComponent = resultUniversityComponentArray[0];
-
-			let methodCall;
 			let access = false;
-			//get current time
-			var d = new Date();
-			let ttime = d.getHours()*hour+d.getMinutes()*minute;
-			
-			//logic for Access entry 
-			/*var me = await query('selectMember',{jmbagParam : resultMember.jmbag});
-			if(!me) {
-        		throw new Error('Non existant user.');
-			}*/
-			//logic
-			//1. if person is accessing its own university and it is a student check time can he enter, 
-			//if he is staff or profesor he can enter without time checking 
-			//2. if person if profesor or student, it can enter on any university in opened times
-			//3. if person is entering fer, it can enter on any given time if it is opened
-			var strKey = resultMember.universityComponent;
-			var numUniversityComponentKey = strKey.replace(/[^0-9]/g, ''); 
-			if(numUniversityComponentKey == universityKey){
-				let resultisOpenedArray = await fetchAsync(conn+queryisOpened+universityKey+timeparam+ttime);
-				let resultisOpened = resultisOpenedArray[0];
-				//let queryisOpened = await query('selectIsOpened',{universityKeyparam : resultUniversityComponent.universityKey,timeparam : ttime});
-				if(!resultisOpened.universityKey) {
-					access = false;
-				}
-				else access = true;
-				
-				if(resultMember.memberType == "Profesor" || resultMember.memberType == "Staff")
-					access = true;
-			}
-			else if(resultMember.memberType == "Profesor" || resultMember.memberType == "Student"){
-				//let isOpened = await query('selectIsOpened',{universityKeyparam : resultUniversityComponent.universityKey,timeparam : ttime});
-				let resultisOpenedArray = await fetchAsync(conn+queryisOpened+universityKey+timeparam+ttime);
-				let resultisOpened = resultisOpenedArray[0];
-				if(!resultisOpened.universityKey) {
-					access = false;
-				}
-				else access = true;
-			}
-			else if(resultUniversityComponent.universityName == "FER"){
-				let resultisOpenedArray = await fetchAsync(conn+queryisFEROpened+ttime);
-				let resultisOpened = resultisOpenedArray[0];
-				if(!resultisOpened.universityKey) {
-					access = false;
-				}
-				else access = true;
-			}
-			
-			//call function that will call transaction
-			if(access == true)
-				methodCall = "AuthorizeAccess"+resultUniversityComponent.universityName;
-			else 
-				methodCall = "RevokeAccess"+resultUniversityComponent.universityName;	
+
+			let	methodCall = "CheckAccess"+resultUniversityComponent.universityName;	
 			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey);
 		} catch (error) {
 			console.log(error);
@@ -284,6 +233,7 @@ async function postAsync (url,formData) {
 		}
 
 	}
+
 	
 	//function that is calling transasction from REST API
 	async function callTrasaction(_method, _jmbag, _universityKey){
@@ -314,6 +264,7 @@ async function postAsync (url,formData) {
 			throw error;
 		}
 	}
+
 
 </script>
 </head>

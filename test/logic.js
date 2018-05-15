@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-'use strict';
+//'use strict';
 /**
  * Write the unit tests for your transction processor functions here
  */
-
+/*
 const AdminConnection = require('composer-admin').AdminConnection;
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const { BusinessNetworkDefinition, CertificateUtil, IdCard } = require('composer-common');
@@ -94,7 +94,7 @@ describe('#' + namespace, () => {
      *
      * @param {String} cardName The card name to use for this identity
      * @param {Object} identity The identity details
-     */
+     *//*
     async function importCardForIdentity(cardName, identity) {
         const metadata = {
             userName: identity.userID,
@@ -214,7 +214,7 @@ describe('#' + namespace, () => {
     /**
      * Reconnect using a different identity.
      * @param {String} cardName The name of the card for the identity to use
-     */
+     *//*
     async function useIdentity(cardName) {
         await businessNetworkConnection.disconnect();
         businessNetworkConnection = new BusinessNetworkConnection({ cardStore: cardStore });
@@ -317,3 +317,4 @@ describe('#' + namespace, () => {
         event.memberAccess.universityComponent.universityName.should.equal('FER');
     });
 });
+*/

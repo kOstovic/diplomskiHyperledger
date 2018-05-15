@@ -1,6 +1,6 @@
 {
   "name": "pii-szg-network",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "Access control network for sveuciliste u zagrebu for thesis on FER",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/pii-szg-network.bna",
@@ -25,5 +25,8 @@
     "nyc": "latest",
     "mkdirp": "latest",
     "mocha": "latest"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
   }
 }

@@ -44,20 +44,7 @@ participant Member identified by jmbag {
 //  o DateTime [] transactionTimeRevoke optional
 //  o GrantAccessStruct grantAccessStruct
 }
-/*
-participant Student extends Member{
-  o Integer yearOfCollage
-}
 
-participant Profesor extends Member{
-  o String title 
-  o String fieldOfJob optional
-}
-
-participant Staff extends Member{
-  o String jobPosition
-}*/
-//dodati od membera
 participant SystemAdministrator identified by jmbag {
   o String jmbag regex=/[0-9]{10}/
   o String firstName
@@ -86,30 +73,18 @@ abstract transaction MemberAccess {
  --> UniversityComponent universityComponent 
 }
 
-transaction AuthorizeAccessFER extends MemberAccess {
+transaction CheckAccessFER extends MemberAccess {
 }
-
-transaction RevokeAccessFER extends MemberAccess {
-}
-
-/*transaction AuthorizeAccessFERUprava extends MemberAccess {
-}
-
-transaction RevokeAccessFERUprava  extends MemberAccess {
+/*transaction CheckAccessFERUprava extends MemberAccess {
 }*/
 
-transaction AuthorizeAccessFFZG extends MemberAccess {
+transaction CheckAccessFSB extends MemberAccess {
 }
 
-transaction RevokeAccessFFZG extends MemberAccess {
-}
-
-transaction AuthorizeAccessFSB extends MemberAccess {
-}
-
-transaction RevokeAccessFSB extends MemberAccess {
+transaction CheckAccessFFZG extends MemberAccess {
 }
 
 event MemberEvent {
+  o Boolean memberAccessBool
   o MemberAccess memberAccess
 }
