@@ -29,12 +29,9 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
-  import { AuthorizeAccessFERComponent } from './AuthorizeAccessFER/AuthorizeAccessFER.component';
-  import { RevokeAccessFERComponent } from './RevokeAccessFER/RevokeAccessFER.component';
-  import { AuthorizeAccessFFZGComponent } from './AuthorizeAccessFFZG/AuthorizeAccessFFZG.component';
-  import { RevokeAccessFFZGComponent } from './RevokeAccessFFZG/RevokeAccessFFZG.component';
-  import { AuthorizeAccessFSBComponent } from './AuthorizeAccessFSB/AuthorizeAccessFSB.component';
-  import { RevokeAccessFSBComponent } from './RevokeAccessFSB/RevokeAccessFSB.component';
+  import { CheckAccessFERComponent } from './CheckAccessFER/CheckAccessFER.component';
+  import { CheckAccessFSBComponent } from './CheckAccessFSB/CheckAccessFSB.component';
+  import { CheckAccessFFZGComponent } from './CheckAccessFFZG/CheckAccessFFZG.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,13 +46,10 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
       SystemAdministratorComponent
       ,
 
-    AuthorizeAccessFERComponent,
-        RevokeAccessFERComponent,
-        AuthorizeAccessFFZGComponent,
-        RevokeAccessFFZGComponent,
-        AuthorizeAccessFSBComponent,
+    CheckAccessFERComponent,
+        CheckAccessFSBComponent,
         
-        RevokeAccessFSBComponent
+        CheckAccessFFZGComponent
         
   ],
   imports: [

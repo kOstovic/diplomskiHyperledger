@@ -44,20 +44,16 @@ import {Event} from './org.hyperledger.composer.system';
    export abstract class MemberAccess extends Transaction {
       member: Member;
       universityComponent: UniversityComponent;
+      access: string;
    }
-   export class AuthorizeAccessFER extends MemberAccess {
+   export class CheckAccessFER extends MemberAccess {
    }
-   export class RevokeAccessFER extends MemberAccess {
+   export class CheckAccessFSB extends MemberAccess {
    }
-   export class AuthorizeAccessFFZG extends MemberAccess {
-   }
-   export class RevokeAccessFFZG extends MemberAccess {
-   }
-   export class AuthorizeAccessFSB extends MemberAccess {
-   }
-   export class RevokeAccessFSB extends MemberAccess {
+   export class CheckAccessFFZG extends MemberAccess {
    }
    export class MemberEvent extends Event {
+      memberAccessBool: boolean;
       memberAccess: MemberAccess;
    }
 // }

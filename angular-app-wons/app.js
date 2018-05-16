@@ -21,8 +21,6 @@ const http = require('http');
 const path = require('path');
 const proxy = require('http-proxy-middleware');
 const proxyConfig = require('./proxy.conf.js');
-const BusinessNetworkConnection2 = require('composer-client').BusinessNetworkConnection;
-const WinstonInjector = require('winston');
 
 const app = express();
 const appEnv = cfenv.getAppEnv();
@@ -56,9 +54,3 @@ proxyConfig.forEach((element) => {
 server.listen(appEnv.port, function () {
     console.log('server starting on ' + appEnv.url);
 });
-
-	async function checkTransaction(){
-
-
-
-	}

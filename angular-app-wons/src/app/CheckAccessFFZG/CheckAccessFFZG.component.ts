@@ -14,15 +14,15 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { AuthorizeAccessFSBService } from './AuthorizeAccessFSB.service';
+import { CheckAccessFFZGService } from './CheckAccessFFZG.service';
 import 'rxjs/add/operator/toPromise';
 @Component({
-	selector: 'app-AuthorizeAccessFSB',
-	templateUrl: './AuthorizeAccessFSB.component.html',
-	styleUrls: ['./AuthorizeAccessFSB.component.css'],
-  providers: [AuthorizeAccessFSBService]
+	selector: 'app-CheckAccessFFZG',
+	templateUrl: './CheckAccessFFZG.component.html',
+	styleUrls: ['./CheckAccessFFZG.component.css'],
+  providers: [CheckAccessFFZGService]
 })
-export class AuthorizeAccessFSBComponent implements OnInit {
+export class CheckAccessFFZGComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -41,6 +41,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
         
   
       
+          access = new FormControl("", Validators.required);
+        
+  
+      
           transactionId = new FormControl("", Validators.required);
         
   
@@ -50,7 +54,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
   
 
 
-  constructor(private serviceAuthorizeAccessFSB:AuthorizeAccessFSBService, fb: FormBuilder) {
+  constructor(private serviceCheckAccessFFZG:CheckAccessFFZGService, fb: FormBuilder) {
     this.myForm = fb.group({
     
         
@@ -59,6 +63,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
     
         
           universityComponent:this.universityComponent,
+        
+    
+        
+          access:this.access,
         
     
         
@@ -78,7 +86,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
 
   loadAll(): Promise<any> {
     let tempList = [];
-    return this.serviceAuthorizeAccessFSB.getAll()
+    return this.serviceCheckAccessFFZG.getAll()
     .toPromise()
     .then((result) => {
 			this.errorMessage = null;
@@ -127,7 +135,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: "org.szg.AuthorizeAccessFSB",
+      $class: "org.szg.CheckAccessFFZG",
       
         
           "member":this.member.value,
@@ -135,6 +143,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
       
         
           "universityComponent":this.universityComponent.value,
+        
+      
+        
+          "access":this.access.value,
         
       
         
@@ -158,6 +170,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
         
       
         
+          "access":null,
+        
+      
+        
           "transactionId":null,
         
       
@@ -167,7 +183,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
       
     });
 
-    return this.serviceAuthorizeAccessFSB.addTransaction(this.Transaction)
+    return this.serviceCheckAccessFFZG.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
 			this.errorMessage = null;
@@ -179,6 +195,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
       
         
           "universityComponent":null,
+        
+      
+        
+          "access":null,
         
       
         
@@ -204,7 +224,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
 
    updateTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: "org.szg.AuthorizeAccessFSB",
+      $class: "org.szg.CheckAccessFFZG",
       
         
           
@@ -220,6 +240,12 @@ export class AuthorizeAccessFSBComponent implements OnInit {
     
         
           
+            "access":this.access.value,
+          
+        
+    
+        
+          
         
     
         
@@ -230,7 +256,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
     
     };
 
-    return this.serviceAuthorizeAccessFSB.updateTransaction(form.get("transactionId").value,this.Transaction)
+    return this.serviceCheckAccessFFZG.updateTransaction(form.get("transactionId").value,this.Transaction)
 		.toPromise()
 		.then(() => {
 			this.errorMessage = null;
@@ -251,7 +277,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
 
   deleteTransaction(): Promise<any> {
 
-    return this.serviceAuthorizeAccessFSB.deleteTransaction(this.currentId)
+    return this.serviceCheckAccessFFZG.deleteTransaction(this.currentId)
 		.toPromise()
 		.then(() => {
 			this.errorMessage = null;
@@ -275,7 +301,7 @@ export class AuthorizeAccessFSBComponent implements OnInit {
 
   getForm(id: any): Promise<any>{
 
-    return this.serviceAuthorizeAccessFSB.getTransaction(id)
+    return this.serviceCheckAccessFFZG.getTransaction(id)
     .toPromise()
     .then((result) => {
 			this.errorMessage = null;
@@ -287,6 +313,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
         
           
             "universityComponent":null,
+          
+        
+          
+            "access":null,
           
         
           
@@ -316,6 +346,14 @@ export class AuthorizeAccessFSBComponent implements OnInit {
           
         }else{
           formObject.universityComponent = null;
+        }
+      
+        if(result.access){
+          
+            formObject.access = result.access;
+          
+        }else{
+          formObject.access = null;
         }
       
         if(result.transactionId){
@@ -361,6 +399,10 @@ export class AuthorizeAccessFSBComponent implements OnInit {
       
         
           "universityComponent":null,
+        
+      
+        
+          "access":null,
         
       
         

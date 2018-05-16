@@ -15,39 +15,39 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { RevokeAccessFER } from '../org.szg';
+import { CheckAccessFFZG } from '../org.szg';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class RevokeAccessFERService {
+export class CheckAccessFFZGService {
 
 	
-		private NAMESPACE: string = 'RevokeAccessFER';
+		private NAMESPACE: string = 'CheckAccessFFZG';
 	
 
 
 
-    constructor(private dataService: DataService<RevokeAccessFER>) {
+    constructor(private dataService: DataService<CheckAccessFFZG>) {
     };
 
-    public getAll(): Observable<RevokeAccessFER[]> {
+    public getAll(): Observable<CheckAccessFFZG[]> {
         return this.dataService.getAll(this.NAMESPACE);
     }
 
-    public getTransaction(id: any): Observable<RevokeAccessFER> {
+    public getTransaction(id: any): Observable<CheckAccessFFZG> {
       return this.dataService.getSingle(this.NAMESPACE, id);
     }
 
-    public addTransaction(itemToAdd: any): Observable<RevokeAccessFER> {
+    public addTransaction(itemToAdd: any): Observable<CheckAccessFFZG> {
       return this.dataService.add(this.NAMESPACE, itemToAdd);
     }
 
-    public updateTransaction(id: any, itemToUpdate: any): Observable<RevokeAccessFER> {
+    public updateTransaction(id: any, itemToUpdate: any): Observable<CheckAccessFFZG> {
       return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
     }
 
-    public deleteTransaction(id: any): Observable<RevokeAccessFER> {
+    public deleteTransaction(id: any): Observable<CheckAccessFFZG> {
       return this.dataService.delete(this.NAMESPACE, id);
     }
 

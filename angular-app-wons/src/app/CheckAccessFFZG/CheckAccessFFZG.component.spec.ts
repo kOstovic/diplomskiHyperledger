@@ -21,28 +21,28 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Configuration } from '../configuration';
 import { DataService } from '../data.service';
-import { RevokeAccessFERComponent } from './RevokeAccessFER.component';
-import {RevokeAccessFERService} from './RevokeAccessFER.service';
-describe('RevokeAccessFERComponent', () => {
-  let component: RevokeAccessFERComponent;
-  let fixture: ComponentFixture<RevokeAccessFERComponent>;
+import { CheckAccessFFZGComponent } from './CheckAccessFFZG.component';
+import {CheckAccessFFZGService} from './CheckAccessFFZG.service';
+describe('CheckAccessFFZGComponent', () => {
+  let component: CheckAccessFFZGComponent;
+  let fixture: ComponentFixture<CheckAccessFFZGComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RevokeAccessFERComponent ],
+      declarations: [ CheckAccessFFZGComponent ],
 imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
   ],
-providers: [RevokeAccessFERService,DataService,Configuration]
+providers: [CheckAccessFFZGService,DataService,Configuration]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RevokeAccessFERComponent);
+    fixture = TestBed.createComponent(CheckAccessFFZGComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

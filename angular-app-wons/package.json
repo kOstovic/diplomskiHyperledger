@@ -1,17 +1,16 @@
 {
-  "name": "angular-app-wons",
-  "description": "Website for pii-szg-network",
-  "main": "app.js",
+  "name": "angular-app",
+  "description": "Hyperledger Composer Angular project",
   "version": "0.0.1",
-  "author": "ja",
-  "email": "ja@ja",
+  "author": "kresho",
+  "email": "kresho@fer.hr",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
   "bin": {
-    "angular-app-wons": "app.js"
+    "angular-app": "app.js"
   },
   "scripts": {
     "ng": "ng",
@@ -35,21 +34,14 @@
     "@angular/router": "^4.0.0",
     "bootstrap": "^3.3.7",
     "cfenv": "^1.0.4",
-    "composer-client": "^0.19.4",
-    "composer-common": "^0.19.4",
     "concurrently": "^3.1.0",
     "config": "^1.21.0",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
     "http-proxy-middleware": "^0.18.0",
     "jquery": "^3.2.1",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2",
-    "require": "^2.4.20",
-    "requirejs": "^2.3.5",
     "rxjs": "^5.1.0",
     "tether": "^1.4.0",
-    "winston": "^2.4.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

@@ -11,6 +11,12 @@
     docker rm $(docker ps -aq)
     docker rmi $(docker images dev-* -q)
     rm -fr $HOME/.composer
+	
+#ili za jednostavnu varijantu
+~/fabric-dev-servers/stopFabric.sh
+~/fabric-dev-servers/teardownFabric.sh
+~/fabric-dev-servers/startFabric.sh
+~/fabric-dev-servers/createPeerAdminCard.sh
 
 #podiže nove instalacije
 ./byfn.sh -m generate
@@ -23,9 +29,9 @@
 
 composer archive create -t dir -n .
 
-#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.1.0.bna
+#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.1.11.bna
 
-#composer network start --networkName pii-szg-network --networkVersion 0.1.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card #PeerAdmin@hlfv1 --file networkadmin.card
+#composer network start --networkName pii-szg-network --networkVersion 0.1.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 #composer card import --file networkadmin.card
 
@@ -46,6 +52,7 @@ composer-rest-server
 #The generated API is connected to the deployed blockchain and business network.
 
 yo hyperledger-composer:angular
+#bootstrap.css obrisati zadnji red /*# sourceMappingURL=bootstrap.css.map */
 
 #Select Yes when asked to connect to running business network.
 

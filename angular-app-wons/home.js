@@ -201,9 +201,24 @@ async function postAsync (url,formData) {
 			let resultUniversityComponentArray  = await fetchAsync(conn+querySelectUniversityComponent+universityKey);
 			let resultUniversityComponent = resultUniversityComponentArray[0];
 			let access = false;
+			let AuthLen, RevokeLen;
+
+			if(!resultMember.transactionAuthorized)
+				AuthLen = 0;
+			else AuthLen = resultMember.transactionAuthorized.length;
+			if(!resultMember.transactionRevoke)
+				RevokeLen = 0;
+			else RevokeLen = resultMember.transactionRevoke.length;
 
 			let	methodCall = "CheckAccess"+resultUniversityComponent.universityName;	
 			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey);
+			let resultMemberArrayAfter = await fetchAsync(conn+querySelectMember+jmbag);
+			let resultMemberAfter = resultMemberArrayAfter[0];
+			var status = document.getElementById("status");
+			if (resultMemberAfter.transactionAuthorized.length > AuthLen)
+    			status.innerHTML = "Granted";
+			else	
+				status.innerHTML = "Denied";
 		} catch (error) {
 			console.log(error);
 			//throw error;	

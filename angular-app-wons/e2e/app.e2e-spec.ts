@@ -17,37 +17,37 @@ import { ExpectedConditions, browser, element, by } from 'protractor';
 import {} from 'jasmine';
 
 
-describe('Starting tests for angular-app-wons', function() {
+describe('Starting tests for angular-app', function() {
   let page: AngularTestPage;
 
   beforeEach(() => {
     page = new AngularTestPage();
   });
 
-  it('website title should be angular-app-wons', () => {
+  it('website title should be angular-app', () => {
     page.navigateTo('/');
     return browser.getTitle().then((result)=>{
-      expect(result).toBe('angular-app-wons');
+      expect(result).toBe('angular-app');
     })
   });
 
-  it('network-name should be pii-szg-network@0.0.9',() => {
+  it('network-name should be pii-szg-network@0.1.11',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('pii-szg-network@0.0.9.bna');
+      expect(txt).toBe('pii-szg-network@0.1.11.bna');
     });
   });
 
-  it('navbar-brand should be angular-app-wons',() => {
+  it('navbar-brand should be angular-app',() => {
     element(by.css('.navbar-brand')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('angular-app-wons');
+      expect(txt).toBe('angular-app');
     });
   });
 
@@ -110,69 +110,36 @@ describe('Starting tests for angular-app-wons', function() {
   
 
   
-    it('AuthorizeAccessFER component should be loadable',() => {
-      page.navigateTo('/AuthorizeAccessFER');
+    it('CheckAccessFER component should be loadable',() => {
+      page.navigateTo('/CheckAccessFER');
       browser.findElement(by.id('transactionName'))
       .then((transactionName) => {
         return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('AuthorizeAccessFER');
+        expect(txt).toBe('CheckAccessFER');
       });
     });
   
-    it('RevokeAccessFER component should be loadable',() => {
-      page.navigateTo('/RevokeAccessFER');
+    it('CheckAccessFSB component should be loadable',() => {
+      page.navigateTo('/CheckAccessFSB');
       browser.findElement(by.id('transactionName'))
       .then((transactionName) => {
         return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('RevokeAccessFER');
+        expect(txt).toBe('CheckAccessFSB');
       });
     });
   
-    it('AuthorizeAccessFFZG component should be loadable',() => {
-      page.navigateTo('/AuthorizeAccessFFZG');
+    it('CheckAccessFFZG component should be loadable',() => {
+      page.navigateTo('/CheckAccessFFZG');
       browser.findElement(by.id('transactionName'))
       .then((transactionName) => {
         return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('AuthorizeAccessFFZG');
-      });
-    });
-  
-    it('RevokeAccessFFZG component should be loadable',() => {
-      page.navigateTo('/RevokeAccessFFZG');
-      browser.findElement(by.id('transactionName'))
-      .then((transactionName) => {
-        return transactionName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('RevokeAccessFFZG');
-      });
-    });
-  
-    it('AuthorizeAccessFSB component should be loadable',() => {
-      page.navigateTo('/AuthorizeAccessFSB');
-      browser.findElement(by.id('transactionName'))
-      .then((transactionName) => {
-        return transactionName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('AuthorizeAccessFSB');
-      });
-    });
-  
-    it('RevokeAccessFSB component should be loadable',() => {
-      page.navigateTo('/RevokeAccessFSB');
-      browser.findElement(by.id('transactionName'))
-      .then((transactionName) => {
-        return transactionName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('RevokeAccessFSB');
+        expect(txt).toBe('CheckAccessFFZG');
       });
     });
   

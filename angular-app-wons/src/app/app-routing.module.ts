@@ -24,12 +24,9 @@ import { UniversityComponentComponent } from './UniversityComponent/UniversityCo
   import { SystemAdministratorComponent } from './SystemAdministrator/SystemAdministrator.component';
 
 
-  import { AuthorizeAccessFERComponent } from './AuthorizeAccessFER/AuthorizeAccessFER.component';
-  import { RevokeAccessFERComponent } from './RevokeAccessFER/RevokeAccessFER.component';
-  import { AuthorizeAccessFFZGComponent } from './AuthorizeAccessFFZG/AuthorizeAccessFFZG.component';
-  import { RevokeAccessFFZGComponent } from './RevokeAccessFFZG/RevokeAccessFFZG.component';
-  import { AuthorizeAccessFSBComponent } from './AuthorizeAccessFSB/AuthorizeAccessFSB.component';
-  import { RevokeAccessFSBComponent } from './RevokeAccessFSB/RevokeAccessFSB.component';  
+  import { CheckAccessFERComponent } from './CheckAccessFER/CheckAccessFER.component';
+  import { CheckAccessFSBComponent } from './CheckAccessFSB/CheckAccessFSB.component';
+  import { CheckAccessFFZGComponent } from './CheckAccessFFZG/CheckAccessFFZG.component';  
 const routes: Routes = [
      //{ path: 'transaction', component: TransactionComponent },
     {path: '', component: HomeComponent},
@@ -42,17 +39,11 @@ const routes: Routes = [
       { path: 'SystemAdministrator', component: SystemAdministratorComponent},
       
       
-        { path: 'AuthorizeAccessFER', component: AuthorizeAccessFERComponent},
+        { path: 'CheckAccessFER', component: CheckAccessFERComponent},
         
-        { path: 'RevokeAccessFER', component: RevokeAccessFERComponent},
+        { path: 'CheckAccessFSB', component: CheckAccessFSBComponent},
         
-        { path: 'AuthorizeAccessFFZG', component: AuthorizeAccessFFZGComponent},
-        
-        { path: 'RevokeAccessFFZG', component: RevokeAccessFFZGComponent},
-        
-        { path: 'AuthorizeAccessFSB', component: AuthorizeAccessFSBComponent},
-        
-        { path: 'RevokeAccessFSB', component: RevokeAccessFSBComponent},
+        { path: 'CheckAccessFFZG', component: CheckAccessFFZGComponent},
         
 		{path: '**', redirectTo:''}
 

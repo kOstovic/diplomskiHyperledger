@@ -14,10 +14,10 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <p class="network-name">pii-szg-network@0.1.1.bna Hyperledger Fabric + Composer</p>
-       <!-- <p class="navbar-brand"><a [routerLink]="['/']">angular-app-wons - HOME</a></p>-->
+        <p class="network-name">pii-szg-network@0.1.11.bna</p>
+        <p class="navbar-brand">angular-app</p>
       </div>
-      <ul class="nav">
+      <ul class="nav navbar-nav">
         <li class="dropdown active">
             <a class="dropdown-toggle" data-toggle="dropdown">Assets</a>
             <ul class="dropdown-menu scrollable-menu">
@@ -30,11 +30,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown">Participants</a>
           <ul class="dropdown-menu scrollable-menu">
             
-            <li><a [routerLink]="['/Student']">Student</a></li>
-            
-            <li><a [routerLink]="['/Profesor']">Profesor</a></li>
-            
-            <li><a [routerLink]="['/Staff']">Staff</a></li>
+            <li><a [routerLink]="['/Member']">Member</a></li>
             
             <li><a [routerLink]="['/SystemAdministrator']">SystemAdministrator</a></li>
             
@@ -44,17 +40,11 @@
         <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
         <ul class="dropdown-menu scrollable-menu">
           
-          <li><a [routerLink]="['/AuthorizeAccessFER']">AuthorizeAccessFER</a></li>
+          <li><a [routerLink]="['/CheckAccessFER']">CheckAccessFER</a></li>
           
-          <li><a [routerLink]="['/RevokeAccessFER']">RevokeAccessFER</a></li>
+          <li><a [routerLink]="['/CheckAccessFSB']">CheckAccessFSB</a></li>
           
-          <li><a [routerLink]="['/AuthorizeAccessFFZG']">AuthorizeAccessFFZG</a></li>
-          
-          <li><a [routerLink]="['/RevokeAccessFFZG']">RevokeAccessFFZG</a></li>
-          
-          <li><a [routerLink]="['/AuthorizeAccessFSB']">AuthorizeAccessFSB</a></li>
-          
-          <li><a [routerLink]="['/RevokeAccessFSB']">RevokeAccessFSB</a></li>
+          <li><a [routerLink]="['/CheckAccessFFZG']">CheckAccessFFZG</a></li>
           
         </ul>
     </li>
@@ -62,4 +52,5 @@
 <p class="navbar-brand"><a [routerLink]="['/']">angular-app-wons - HOME</a></p>
     </div>
   </nav>
+  
   <router-outlet></router-outlet>

@@ -71,6 +71,7 @@ abstract transaction MemberAccess {
 //  o String universityKey regex=/[0-9]{4}/
  --> Member member
  --> UniversityComponent universityComponent 
+ o Boolean access optional
 }
 
 transaction CheckAccessFER extends MemberAccess {
