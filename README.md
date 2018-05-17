@@ -24,15 +24,15 @@ rm -fr $HOME/.composer
 ./byfn.sh -m up -s couchdb -a
 ./byfn.sh -m up
 ./byfn.sh -m up -f docker-compose-cas.yaml
-#ostatak pratiti po uputama osim endoresment dijela i staviti za network da se zove pii-szg-network uz verziju 0.1.0.bna
+#ostatak pratiti po uputama osim endoresment dijela i staviti za network da se zove pii-szg-network uz verziju 0.2.X.bna
 
 #biti u direktoriju pii-szg-network
 
 composer archive create -t dir -n .
 
-#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.2.0.bna
+#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.2.3.bna
 
-#composer network start --networkName pii-szg-network --networkVersion 0.2.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+#composer network start --networkName pii-szg-network --networkVersion 0.2.3 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 #composer card import --file networkadmin.card
 
