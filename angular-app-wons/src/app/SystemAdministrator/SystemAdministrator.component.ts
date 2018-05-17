@@ -64,6 +64,10 @@ export class SystemAdministratorComponent implements OnInit {
           memberType = new FormControl("", Validators.required);
         
   
+      
+          tid = new FormControl("", Validators.required);
+        
+  
 
 
   constructor(private serviceSystemAdministrator:SystemAdministratorService, fb: FormBuilder) {
@@ -98,7 +102,11 @@ export class SystemAdministratorComponent implements OnInit {
         
     
         
-          memberType:this.memberType
+          memberType:this.memberType,
+        
+    
+        
+          tid:this.tid
         
     
     });
@@ -190,7 +198,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "memberType":this.memberType.value
+          "memberType":this.memberType.value,
+        
+      
+        
+          "tid":this.tid.value
         
       
     };
@@ -226,7 +238,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "memberType":null
+          "memberType":null,
+        
+      
+        
+          "tid":null
         
       
     });
@@ -266,7 +282,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "memberType":null 
+          "memberType":null,
+        
+      
+        
+          "tid":null 
         
       
       });
@@ -328,7 +348,13 @@ export class SystemAdministratorComponent implements OnInit {
     
         
           
-            "memberType":this.memberType.value
+            "memberType":this.memberType.value,
+          
+        
+    
+        
+          
+            "tid":this.tid.value
           
         
     
@@ -414,7 +440,11 @@ export class SystemAdministratorComponent implements OnInit {
           
         
           
-            "memberType":null 
+            "memberType":null,
+          
+        
+          
+            "tid":null 
           
         
       };
@@ -486,6 +516,14 @@ export class SystemAdministratorComponent implements OnInit {
           formObject.memberType = null;
         }
       
+        if(result.tid){
+          
+            formObject.tid = result.tid;
+          
+        }else{
+          formObject.tid = null;
+        }
+      
 
       this.myForm.setValue(formObject);
 
@@ -536,7 +574,11 @@ export class SystemAdministratorComponent implements OnInit {
         
       
         
-          "memberType":null 
+          "memberType":null,
+        
+      
+        
+          "tid":null 
         
       
       });

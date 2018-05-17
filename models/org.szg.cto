@@ -40,6 +40,7 @@ participant Member identified by jmbag {
   o String[] transactionAuthorized optional
   o String[] transactionRevoke optional  
   o MemberType memberType
+  o String tid
 //  o DateTime [] transactionTimeAuthorize optional
 //  o DateTime [] transactionTimeRevoke optional
 //  o GrantAccessStruct grantAccessStruct
@@ -54,6 +55,7 @@ participant SystemAdministrator identified by jmbag {
   o String[] transactionAuthorized optional
   o String[] transactionRevoke optional  
   o MemberType memberType optional
+  o String tid
 }
 
 asset UniversityComponent identified by universityKey {
@@ -71,6 +73,7 @@ abstract transaction MemberAccess {
 //  o String universityKey regex=/[0-9]{4}/
  --> Member member
  --> UniversityComponent universityComponent 
+   o String tid
  //o Boolean access optional
 }
 

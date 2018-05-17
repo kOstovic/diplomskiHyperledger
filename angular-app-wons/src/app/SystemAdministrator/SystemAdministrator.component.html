@@ -142,6 +142,16 @@
               
             
   
+              
+                <div class="form-group text-left">
+                  <label for="tid">tid</label>
+                  
+                    <input formControlName="tid" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -290,6 +300,15 @@
   
               </div>
             
+              <div class="form-group text-left">
+                <label for="tid">tid</label>
+  
+                
+                  <input [ngModel]="tid"formControlName="tid" type="text" class="form-control">
+                
+  
+              </div>
+            
   
   
           </div>
@@ -377,6 +396,8 @@
               
                   <th class="info">memberType</th>
               
+                  <th class="info">tid</th>
+              
                 <th class="info-actions">Actions</th>
             </tr>
           </thead>
@@ -399,6 +420,8 @@
                   <td class="participant-properties">{{participant.transactionRevoke}}</td>
               
                   <td class="participant-properties">{{participant.memberType}}</td>
+              
+                  <td class="participant-properties">{{participant.tid}}</td>
               
               <td>
                 <button (click)="getForm(participant.jmbag);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateParticipantModal">

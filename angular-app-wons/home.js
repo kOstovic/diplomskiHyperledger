@@ -106,6 +106,7 @@ async function postAsync (url,formData) {
 			somebody.firstName = 'marko';
 			somebody.lastName = 'markic';
 			somebody.memberType = 'Student';
+			somebody.tid = "E200341201301700026A6B90";
 			somebody.universityComponent = relationshipUniversityComponent+assetFER.universityKey;
 			stringPost = JSON.stringify(somebody);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
@@ -123,6 +124,7 @@ async function postAsync (url,formData) {
 			somebody2.firstName = 'ana';
 			somebody2.lastName = 'anic';
 			somebody2.memberType = 'Profesor';
+			somebody2.tid = "E200341201301700026A6B93";
 			somebody2.universityComponent = relationshipUniversityComponent+assetFER.universityKey;
 			stringPost = JSON.stringify(somebody2);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
@@ -140,6 +142,7 @@ async function postAsync (url,formData) {
 			somebody3.firstName = 'filozof';
 			somebody3.lastName = 'filozofic';
 			somebody3.memberType = 'Student';
+			somebody3.tid = "E200341201301700026A6B92";
 			somebody3.universityComponent = relationshipUniversityComponent+assetFFZG.universityKey;
 			stringPost = JSON.stringify(somebody3);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
@@ -159,6 +162,7 @@ async function postAsync (url,formData) {
 			somebody4.memberType = 'Staff';
 			somebody4.universityComponent = relationshipUniversityComponent+assetFFZG.universityKey;
 			somebody4.jobPosition = "sistemAdmin";
+			somebody4.tid = "E200341201301700026A6B33";
 			stringPost = JSON.stringify(somebody4);
 			resultPostArray = await postAsync(conn+postSystemAdministrator,stringPost);
 
@@ -188,6 +192,7 @@ async function postAsync (url,formData) {
 		//get input
 		var jmbag = document.getElementById('jmbag').value;
 		var universityKey = document.getElementById('universityKey').value;
+		let tid = document.getElementById('tid').value;
 		
 		try {
 			//let registryMember = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
@@ -211,7 +216,7 @@ async function postAsync (url,formData) {
 			else RevokeLen = resultMember.transactionRevoke.length;
 
 			let	methodCall = "CheckAccess"+resultUniversityComponent.universityName;	
-			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey);
+			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey,tid);
 			let resultMemberArrayAfter = await fetchAsync(conn+querySelectMember+jmbag);
 			let resultMemberAfter = resultMemberArrayAfter[0];
 			var status = document.getElementById("status");
@@ -228,7 +233,7 @@ async function postAsync (url,formData) {
 
 	
 	//function that is calling transasction from REST API
-	async function callTrasaction(_method, _jmbag, _universityKey){
+	async function callTrasaction(_method, _jmbag, _universityKey,_tid){
 		try {
 
 			/*this.bizNetworkConnection = new BusinessNetworkConnection();
@@ -248,6 +253,7 @@ async function postAsync (url,formData) {
 			trans.$class = prefixApp+"."+_method;
 			trans.member = relationshipMember+_jmbag;
 			trans.universityComponent = relationshipUniversityComponent+_universityKey;
+			trans.tid = _tid;
 			var stringTrans = JSON.stringify(trans);
 			resultPostArray = await postAsync(conn+api+_method,stringTrans);
 			console.log(resultPostArray);

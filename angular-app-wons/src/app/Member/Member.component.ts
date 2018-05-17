@@ -60,6 +60,10 @@ export class MemberComponent implements OnInit {
           memberType = new FormControl("", Validators.required);
         
   
+      
+          tid = new FormControl("", Validators.required);
+        
+  
 
 
   constructor(private serviceMember:MemberService, fb: FormBuilder) {
@@ -90,7 +94,11 @@ export class MemberComponent implements OnInit {
         
     
         
-          memberType:this.memberType
+          memberType:this.memberType,
+        
+    
+        
+          tid:this.tid
         
     
     });
@@ -178,7 +186,11 @@ export class MemberComponent implements OnInit {
         
       
         
-          "memberType":this.memberType.value
+          "memberType":this.memberType.value,
+        
+      
+        
+          "tid":this.tid.value
         
       
     };
@@ -210,7 +222,11 @@ export class MemberComponent implements OnInit {
         
       
         
-          "memberType":null
+          "memberType":null,
+        
+      
+        
+          "tid":null
         
       
     });
@@ -246,7 +262,11 @@ export class MemberComponent implements OnInit {
         
       
         
-          "memberType":null 
+          "memberType":null,
+        
+      
+        
+          "tid":null 
         
       
       });
@@ -302,7 +322,13 @@ export class MemberComponent implements OnInit {
     
         
           
-            "memberType":this.memberType.value
+            "memberType":this.memberType.value,
+          
+        
+    
+        
+          
+            "tid":this.tid.value
           
         
     
@@ -384,7 +410,11 @@ export class MemberComponent implements OnInit {
           
         
           
-            "memberType":null 
+            "memberType":null,
+          
+        
+          
+            "tid":null 
           
         
       };
@@ -448,6 +478,14 @@ export class MemberComponent implements OnInit {
           formObject.memberType = null;
         }
       
+        if(result.tid){
+          
+            formObject.tid = result.tid;
+          
+        }else{
+          formObject.tid = null;
+        }
+      
 
       this.myForm.setValue(formObject);
 
@@ -494,7 +532,11 @@ export class MemberComponent implements OnInit {
         
       
         
-          "memberType":null 
+          "memberType":null,
+        
+      
+        
+          "tid":null 
         
       
       });

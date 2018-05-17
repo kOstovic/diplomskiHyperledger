@@ -59,11 +59,10 @@ describe('#' + namespace, () => {
     let factory;
 
     // These are the identities for people
-    const ferovacCardName = '0036444555';
-    const ferovacProfesorCardName = '0036555555';
-    const filozofCardName = '1111223322';
-    const filozofSystemCardName = '1111220000';
-    const filozofStaffCardName = '1111000000';
+    const ferovacSystemAdmin = '0036000000';
+    const fsbovacfSystemAdmin = '0035000000';
+    const filozofSystemAdmin = '1111000000';
+
 
     // These are a list of receieved events.
     let events;

@@ -41,7 +41,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
   
       
-          access = new FormControl("", Validators.required);
+          tid = new FormControl("", Validators.required);
         
   
       
@@ -66,7 +66,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
     
         
-          access:this.access,
+          tid:this.tid,
         
     
         
@@ -146,7 +146,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
       
         
-          "access":this.access.value,
+          "tid":this.tid.value,
         
       
         
@@ -170,7 +170,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
       
         
-          "access":null,
+          "tid":null,
         
       
         
@@ -198,7 +198,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
       
         
-          "access":null,
+          "tid":null,
         
       
         
@@ -240,7 +240,7 @@ export class CheckAccessFSBComponent implements OnInit {
     
         
           
-            "access":this.access.value,
+            "tid":this.tid.value,
           
         
     
@@ -316,7 +316,7 @@ export class CheckAccessFSBComponent implements OnInit {
           
         
           
-            "access":null,
+            "tid":null,
           
         
           
@@ -348,12 +348,12 @@ export class CheckAccessFSBComponent implements OnInit {
           formObject.universityComponent = null;
         }
       
-        if(result.access){
+        if(result.tid){
           
-            formObject.access = result.access;
+            formObject.tid = result.tid;
           
         }else{
-          formObject.access = null;
+          formObject.tid = null;
         }
       
         if(result.transactionId){
@@ -402,7 +402,7 @@ export class CheckAccessFSBComponent implements OnInit {
         
       
         
-          "access":null,
+          "tid":null,
         
       
         

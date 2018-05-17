@@ -15,6 +15,7 @@
 #ili za jednostavnu varijantu
 ~/fabric-dev-servers/stopFabric.sh
 ~/fabric-dev-servers/teardownFabric.sh
+rm -fr $HOME/.composer
 ~/fabric-dev-servers/startFabric.sh
 ~/fabric-dev-servers/createPeerAdminCard.sh
 
@@ -29,9 +30,9 @@
 
 composer archive create -t dir -n .
 
-#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.1.11.bna
+#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.2.0.bna
 
-#composer network start --networkName pii-szg-network --networkVersion 0.1.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+#composer network start --networkName pii-szg-network --networkVersion 0.2.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 #composer card import --file networkadmin.card
 
