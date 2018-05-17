@@ -18,13 +18,23 @@ rule SystemAdministratorCanReadEverything {
     operation: READ
     resource: "org.szg.*"
     action: ALLOW
-}
+}/*
 
-rule EverybodyCanSubmitTransactions {
+rule EverybodyCanSubmitTransactionsToAsset{
     description: "Allow all participants to submit transactions"
     participant: "org.szg.*"
     operation: CREATE
     resource: "org.szg.*"
+    action: ALLOW
+}
+*/
+rule EverybodyCanSubmitTransactionsToTheirAsset{
+    description: "Allow all participants to submit transactions to their asset"
+    participant(p): "org.szg.*"
+    operation: CREATE
+    resource(r): "org.szg.UniversityComponent"
+    transaction(tx): "org.szg.MemberAccess"
+    condition: (r.getIdentifier() === p.universityComponent.getIdentifier())
     action: ALLOW
 }
 /*
@@ -42,7 +52,7 @@ rule OwnerHasFullAccessToTheirAssets {
     participant(p): "org.szg.*"
     operation: ALL
     resource(r): "org.szg.*"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    condition: (r.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 

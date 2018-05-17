@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-//'use strict';
+'use strict';
 /**
  * Write the unit tests for your transction processor functions here
  */
-/*
+
 const AdminConnection = require('composer-admin').AdminConnection;
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const { BusinessNetworkDefinition, CertificateUtil, IdCard } = require('composer-common');
@@ -93,7 +93,7 @@ describe('#' + namespace, () => {
      *
      * @param {String} cardName The card name to use for this identity
      * @param {Object} identity The identity details
-     *//*
+     */
     async function importCardForIdentity(cardName, identity) {
         const metadata = {
             userName: identity.userID,
@@ -162,19 +162,22 @@ describe('#' + namespace, () => {
 	var somebody = factory.newResource(namespace, participantType, 'jmbag:0036444444');
 	somebody.firstName = 'marko';
 	somebody.lastName = 'markic';
-	somebody.memberType = 'Student';
+    somebody.memberType = 'Student';
+    somebody.tid = "E200341201301700026A6B90";
 	somebody.universityComponent = FERRelation;
 
 	var somebody2 = factory.newResource(namespace, participantType, 'jmbag:0036555555');
 	somebody2.firstName = 'ana';
 	somebody2.lastName = 'anic';
-	somebody2.memberType = 'Profesor';
+    somebody2.memberType = 'Profesor';
+    somebody2.tid = "E200341201301700026A6B91";
 	somebody2.universityComponent = FERRelation;
 
 	var somebody3 = factory.newResource(namespace, participantType, 'jmbag:1111223322');
 	somebody3.firstName = 'filozof';
 	somebody3.lastName = 'filozofic';
-	somebody3.memberType = 'Student';
+    somebody3.memberType = 'Student';
+    somebody3.tid = "E200341201301700026A6B92";
 	somebody3.universityComponent = FFZGRelation;
 
 	
@@ -183,7 +186,8 @@ describe('#' + namespace, () => {
 	somebody4.firstName = 'sistemski';
 	somebody4.lastName = 'adminic';
 	somebody4.memberType = 'Staff';
-	somebody4.universityComponent = FFZGRelation;
+    somebody4.tid = "E200341201301700026A6B93";
+    somebody4.universityComponent = FFZGRelation;
 	somebody4.jobPosition = "sistemAdmin";
     await memberRegistry2.add(somebody4);
     
@@ -191,29 +195,30 @@ describe('#' + namespace, () => {
 	var somebody5 = factory.newResource(namespace, participantType, 'jmbag:1111220000');
 	somebody5.firstName = 'cistacica';
 	somebody5.lastName = 'cistac';
-	somebody5.memberType = 'Staff';
+    somebody5.memberType = 'Staff';
+    somebody5.tid = "E200341201301700026A6B95";
     somebody5.universityComponent = FFZGRelation;
     
 	participantRegistry.addAll([somebody, somebody2, somebody3,somebody5]);
 
 
         // Issue the identities.
-        let identity = await businessNetworkConnection.issueIdentity(participantNS + '#0036444444', 'markomarkic');
+        /*let identity = await businessNetworkConnection.issueIdentity(participantNS + '#0036444444', 'markomarkic');
         await importCardForIdentity(ferovacCardName, identity);
         identity = await businessNetworkConnection.issueIdentity(participantNS + '#0036555555', 'anaanic');
-        await importCardForIdentity(ferovacProfesorCardName, identity);
-        identity = await businessNetworkConnection.issueIdentity(participantNS + '#1111223322', 'filozoffilozofic');
-        await importCardForIdentity(filozofCardName, identity);
-        identity = await businessNetworkConnection.issueIdentity(participantNS2 + '#1111000000', 'sistemskiadminic');
-        await importCardForIdentity(filozofSystemCardName, identity);
-        identity = await businessNetworkConnection.issueIdentity(participantNS + '#1111220000', 'cistacicacistac');
-        await importCardForIdentity(filozofStaffCardName, identity);
+        await importCardForIdentity(ferovacProfesorCardName, identity);*/
+        identity = await businessNetworkConnection.issueIdentity(participantNS2 + '#0036000000', 'fer@pii-szg-network');
+        await importCardForIdentity(ferovacSystemAdminCardName, identity);
+        identity = await businessNetworkConnection.issueIdentity(participantNS2 + '#0035000000', 'fsb@pii-szg-network');
+        await importCardForIdentity(fsbovacfSystemAdminCardName, identity);
+        identity = await businessNetworkConnection.issueIdentity(participantNS2 + '#1111000000', 'ffzg@pii-szg-network');
+        await importCardForIdentity(filozofSystemAdminCardName, identity);
     });
 
     /**
      * Reconnect using a different identity.
      * @param {String} cardName The name of the card for the identity to use
-     *//*
+     */
     async function useIdentity(cardName) {
         await businessNetworkConnection.disconnect();
         businessNetworkConnection = new BusinessNetworkConnection({ cardStore: cardStore });
@@ -225,9 +230,9 @@ describe('#' + namespace, () => {
         factory = businessNetworkConnection.getBusinessNetwork().getFactory();
     }
 
-    it('ferovacCardName can read all of the assets', async () => {
+    it('ferovacSystemAdminCardName can read all of the assets', async () => {
         // Use the identity for ferovacCardName.
-        await useIdentity(ferovacCardName);
+        await useIdentity(ferovacSystemAdminCardName);
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
         const assets = await assetRegistry.getAll();
 
@@ -240,14 +245,15 @@ describe('#' + namespace, () => {
         const asset3 = assets[2];
         asset1.universityName.should.equal('FFZG');
     });
-    it('ferovacCardName can submit a transaction for his assets', async () => {
+    it('ferovacSystemAdminCardName can submit a transaction for his assets', async () => {
         // Use the identity for ferovacCardName.
-        await useIdentity(ferovacCardName);
+        await useIdentity(ferovacSystemAdminCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'AuthorizeAccessFER');
+        const transaction = factory.newTransaction(namespace, 'CheckAccessFER');
         transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:0036444444');
         transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:0036');
+        transaction.tid = "E200341201301700026A6B90";
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -265,14 +271,40 @@ describe('#' + namespace, () => {
         //event.timestamp.should.be.an.instanceOf(Date);
         event.memberAccess.universityComponent.universityName.should.equal('FER');
     });
-    it('ferovacProfesorCardName can submit a transaction for his assets', async () => {//
-        // Use the identity for ferovacProfesorCardName.
-        await useIdentity(ferovacProfesorCardName);
+    it('fsbovacfSystemAdminCardName can submit a transaction for his assets and grant grant for access', async () => {//
+        // Use the identity for fsbovacfSystemAdminCardName.
+        await useIdentity(fsbovacfSystemAdminCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'AuthorizeAccessFFZG');
+        const transaction = factory.newTransaction(namespace, 'CheckAccessFSB');
         transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:0036555555');
+        transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:0035');
+        await businessNetworkConnection.submitTransaction(transaction);
+
+        // Get the asset.
+        const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
+        const asset1 = await assetRegistry.get('1111');
+
+        // Validate the asset.
+        asset1.universityName.should.equal('FSB');
+	    asset1.transactionAuthorized.should.have.lengthOf(1);
+
+        // Validate the events.
+        events.should.have.lengthOf(1);
+        const event = events[0];
+        //event.eventId.should.be.a('string');
+        //event.timestamp.should.be.an.instanceOf(Date);
+        event.memberAccess.universityComponent.universityName.should.equal('FSB');
+    });
+    it('filozofSystemAdminCardName submit a RevokeAccessFER transaction for his assets and grant grant for access', async () => {//
+        // Use the identity for filozofSystemAdminCardName.
+        await useIdentity(filozofSystemAdminCardName);
+
+        // Submit the transaction.
+        const transaction = factory.newTransaction(namespace, 'CheckAccessFFZG');
+        transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:1111220000');
         transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:1111');
+        somebody5.tid = "E200341201301700026A6B95";
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -288,32 +320,31 @@ describe('#' + namespace, () => {
         const event = events[0];
         //event.eventId.should.be.a('string');
         //event.timestamp.should.be.an.instanceOf(Date);
-        event.memberAccess.universityComponent.universityName.should.equal('FER');
+        event.memberAccess.universityComponent.universityName.should.equal('FFZG');
     });
-    it('filozofStaffCardName submit a RevokeAccessFER transaction for his assets', async () => {//
-        // Use the identity for ferovacCardName.
-        await useIdentity(filozofStaffCardName);
+    it('fsbovacfSystemAdminCardName can submit a transaction for his assets and revoke grant for access', async () => {//
+        // Use the identity for fsbovacfSystemAdminCardName.
+        await useIdentity(fsbovacfSystemAdminCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'RevokeAccessFER');
+        const transaction = factory.newTransaction(namespace, 'CheckAccessFSB');
         transaction.member = factory.newRelationship(namespace, participantType, 'jmbag:1111220000');
-        transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:0036');
+        transaction.universityComponent = factory.newRelationship(namespace, assetType, 'universityKey:0035');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
-        const asset1 = await assetRegistry.get('0036');
+        const asset1 = await assetRegistry.get('0035');
 
         // Validate the asset.
-        asset1.universityName.should.equal('FER');
-	    asset1.transactionAuthorized.should.have.lengthOf(1);
+        asset1.universityName.should.equal('FSB');
+	    asset1.transactionRevoke.should.have.lengthOf(1);
 
         // Validate the events.
         events.should.have.lengthOf(1);
         const event = events[0];
         //event.eventId.should.be.a('string');
         //event.timestamp.should.be.an.instanceOf(Date);
-        event.memberAccess.universityComponent.universityName.should.equal('FER');
+        event.memberAccess.universityComponent.universityName.should.equal('FSB');
     });
 });
-*/
