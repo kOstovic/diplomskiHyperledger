@@ -29,15 +29,13 @@ rm -fr $HOME/.composer
 #biti u direktoriju pii-szg-network
 
 composer archive create -t dir -n .
-
-#composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.2.3.bna
-
-#composer network start --networkName pii-szg-network --networkVersion 0.2.3 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
-
-#composer card import --file networkadmin.card
+composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.3.0.bna
+composer network start --networkName pii-szg-network --networkVersion 0.3.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer card import --file networkadmin.card
 
 #composer network ping --card admin@pii-szg-network
 
+# composer-rest-server -c admin@pii-szg-network -n never -w true
 composer-rest-server
 
 #Enter admin@pii-szg-network as the card name.

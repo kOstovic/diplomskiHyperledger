@@ -12,40 +12,50 @@
  * limitations under the License.
  */
 
+rule SampleConditionalRuleWithTransaction {
+    description: "Description of the ACL rule"
+    participant(m): "org.szg.SystemAdministrator"
+    operation: READ, CREATE, UPDATE
+    resource(v): "org.szg.*"
+    transaction(tx): "org.szg.*"
+    condition: (m.universityComponent.getIdentifier() == tx.universityComponent.getIdentifier())
+    action: ALLOW
+}
+rule FerSysAdminCanFERStuff{
+    description: "FerSysAdminCanControlFERAccess"
+    participant(p): "org.szg.SystemAdministrator#0036000000"
+    operation: CREATE, READ, UPDATE
+    resource(r): "org.szg.*"
+    transaction: "org.szg.CheckAccessFER"
+    condition: (r.getIdentifier() == "0036")
+    action: ALLOW
+}
+rule FfzgSysAdminCanFFZGStuff{
+    description: "FerSysAdminCanControlFFZGAccess"
+    participant(p): "org.szg.SystemAdministrator#1111000000"
+    operation: CREATE, READ, UPDATE
+    resource(r): "org.szg.*"
+    transaction: "org.szg.CheckAccessFFZG"
+    condition: (r.getIdentifier() == "1111")
+    action: ALLOW
+}
+rule FsbSysAdminCanFSBStuff{
+    description: "FerSysAdminCanControlFSBAccess"
+    participant(p): "org.szg.SystemAdministrator#0035000000"
+    operation: CREATE, READ, UPDATE
+    resource(r): "org.szg.*"
+    transaction: "org.szg.CheckAccessFSB"
+    condition: (r.getIdentifier() == "0035")
+    action: ALLOW
+}
+
 rule SystemAdministratorCanReadEverything {
     description: "Allow SystemAdministrator participants read access to all resources"
     participant: "org.szg.SystemAdministrator"
     operation: READ
     resource: "org.szg.*"
     action: ALLOW
-}/*
-
-rule EverybodyCanSubmitTransactionsToAsset{
-    description: "Allow all participants to submit transactions"
-    participant: "org.szg.*"
-    operation: CREATE
-    resource: "org.szg.*"
-    action: ALLOW
 }
-*/
-rule EverybodyCanSubmitTransactionsToTheirAsset{
-    description: "Allow all participants to submit transactions to their asset"
-    participant(p): "org.szg.*"
-    operation: CREATE
-    resource(r): "org.szg.UniversityComponent"
-    transaction(tx): "org.szg.MemberAccess"
-    condition: (r.getIdentifier() === p.universityComponent.getIdentifier())
-    action: ALLOW
-}
-/*
-rule EverybodyCanReadTheirAssets {
-    description: "Allow all participants read access to their assets"
-    participant(p): "org.szg.*"
-    operation: READ
-    resource(r): "org.szg.*"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}*/
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"

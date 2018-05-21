@@ -195,14 +195,12 @@ async function postAsync (url,formData) {
 		let tid = document.getElementById('tid').value;
 		
 		try {
-			//let registryMember = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
-			//let resultMember = registryMember.get('jmbag:'+jmbag);
 
-			//get member and asset from input
+
+			//get member and asset from REST Api based on input
 			let resultMemberArray = await fetchAsync(conn+querySelectMember+jmbag);
 			let resultMember = resultMemberArray[0];
-			//let registryUniversityComponent = await this.bizNetworkConnection.getAssetRegistry('org.szg.UniversityComponent');
-			//let resultUniversityComponent = registryUniversityComponent.get('universityKey:'+universityKey);
+
 			let resultUniversityComponentArray  = await fetchAsync(conn+querySelectUniversityComponent+universityKey);
 			let resultUniversityComponent = resultUniversityComponentArray[0];
 			let access = false;
@@ -215,6 +213,7 @@ async function postAsync (url,formData) {
 				RevokeLen = 0;
 			else RevokeLen = resultMember.transactionRevoke.length;
 
+			//call method and post status
 			let	methodCall = "CheckAccess"+resultUniversityComponent.universityName;	
 			await callTrasaction(methodCall,resultMember.jmbag,resultUniversityComponent.universityKey,tid);
 			let resultMemberArrayAfter = await fetchAsync(conn+querySelectMember+jmbag);
@@ -231,24 +230,9 @@ async function postAsync (url,formData) {
 
 	}
 
-	
 	//function that is calling transasction from REST API
 	async function callTrasaction(_method, _jmbag, _universityKey,_tid){
 		try {
-
-			/*this.bizNetworkConnection = new BusinessNetworkConnection();
-			const cardName = "admin@pii-szg-network";
-			this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardName);
-			let factory = this.businessNetworkDefinition.getFactory();
-			
-			//let registry = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
-			//let result = registry.get('jmbag:'+_jmbag);
-			let transaction    = factory.newTransaction('org.szg',_method);
-			transaction.universityComponent  = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:'+_universityKey);
-			transaction.member = factory.newRelationship('org.szg', 'Member', 'jmbag:'+_jmbag);
-			
-			await this.bizNetworkConnection.submitTransaction(transaction);*/
-
 			var trans = new Object();
 			trans.$class = prefixApp+"."+_method;
 			trans.member = relationshipMember+_jmbag;
