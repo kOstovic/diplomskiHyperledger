@@ -63,15 +63,6 @@ async function postAsync (url,formData) {
 	async function beginer() 
 	{ 
 		try {
-			
-			/*this.bizNetworkConnection = new BusinessNetworkConnection();
-			const cardName = "admin@pii-szg-network";
-			this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardName);
-			
-			this.memberRegistry = await this.bizNetworkConnection.getParticipantRegistry('org.szg.Member');
-			this.assetRegistry = await this.bizNetworkConnection.getAssetRegistry('org.szg.UniversityComponent');
-			let factory = this.businessNetworkDefinition.getFactory();*/
-			
 			let stringPost;
 			let resultPostArray;
 			var assetFER = new Object();
@@ -84,12 +75,7 @@ async function postAsync (url,formData) {
 			//convert object to json string and send it to server
 			stringPost = JSON.stringify(assetFER);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
-			/*var assetFER = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0036');
-			assetFER.opening = 5*hour;
-			assetFER.closing = 23*hour;
-			assetFER.universityName = "FER";
-			// Create a new relationship for the owner
-			let FERRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0036');*/
+
 			var assetFSB = new Object();
 			assetFSB.$class = 'org.szg.UniversityComponent';
 			assetFSB.universityKey = "0035";
@@ -100,11 +86,7 @@ async function postAsync (url,formData) {
 			//convert object to json string 
 			stringPost = JSON.stringify(assetFSB);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
-			/*var assetFSB = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:0035');
-			assetFSB.opening = 7*hour;
-			assetFSB.closing = 21*hour;
-			assetFSB.universityName = "FSB";
-			let FSBRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:0035');*/
+
 			var assetFFZG = new Object();
 			assetFFZG.$class = 'org.szg.UniversityComponent';
 			assetFFZG.universityKey = "1111";
@@ -115,13 +97,6 @@ async function postAsync (url,formData) {
 			//convert object to json string
 			stringPost = JSON.stringify(assetFFZG);
 			resultPostArray = await postAsync(conn+postUniversityComponent,stringPost);
-			/*var assetFFZG = factory.newResource('org.szg', 'UniversityComponent', 'universityKey:1111');
-			assetFFZG.opening = 8*hour;
-			assetFFZG.closing = 20*hour;
-			assetFFZG.universityName = "FFZG";
-			let FFZGRelation = factory.newRelationship('org.szg', 'UniversityComponent', 'universityKey:1111');*/
-			
-			//await this.assetRegistry.addAll([assetFER, assetFSB, FFZG]);
 
 			var somebody = new Object();
 			somebody.$class = 'org.szg.Member';
@@ -133,13 +108,6 @@ async function postAsync (url,formData) {
 			somebody.universityComponent = relationshipUniversityComponent+assetFER.universityKey;
 			stringPost = JSON.stringify(somebody);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
-			
-			/*var somebody = factory.newResource('org.szg', 'Member', 'jmbag:0036444444');
-			somebody.firstName = 'marko';
-			somebody.lastName = 'markic';
-			somebody.memberType = 'Student';
-			somebody.universityComponent = FERRelation;
-			await memberRegistry.add(somebody);*/
 
 			var somebody2 = new Object();
 			somebody2.$class = 'org.szg.Member';
@@ -152,13 +120,6 @@ async function postAsync (url,formData) {
 			stringPost = JSON.stringify(somebody2);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
 
-			/*var somebody2 = factory.newResource('org.szg', 'Member', 'jmbag:0036555555');
-			somebody2.firstName = 'ana';
-			somebody2.lastName = 'anic';
-			somebody2.memberType = 'Profesor';
-			somebody2.universityComponent = FERRelation;
-			await memberRegistry.add(somebody2);*/
-
 			var somebody3 = new Object();
 			somebody3.$class = 'org.szg.Member';
 			somebody3.jmbag = "1111223322";
@@ -169,13 +130,6 @@ async function postAsync (url,formData) {
 			somebody3.universityComponent = relationshipUniversityComponent+assetFFZG.universityKey;
 			stringPost = JSON.stringify(somebody3);
 			resultPostArray = await postAsync(conn+postMember,stringPost);
-
-			/*var somebody3 = factory.newResource('org.szg', 'Member', 'jmbag:1111223322');
-			somebody3.firstName = 'filozof';
-			somebody3.lastName = 'filozofic';
-			somebody3.memberType = 'Student';
-			somebody3.universityComponent = FFZGRelation;
-			await memberRegistry.add(somebody3);*/
 
 			var somebody4 = new Object();
 			somebody4.$class = 'org.szg.SystemAdministrator';
@@ -188,16 +142,6 @@ async function postAsync (url,formData) {
 			somebody4.tid = "E200341201301700026A6B33";
 			stringPost = JSON.stringify(somebody4);
 			resultPostArray = await postAsync(conn+postSystemAdministrator,stringPost);
-
-			/*this.memberRegistry2 = await this.bizNetworkConnection.getParticipantRegistry('org.szg.SystemAdministrator');
-			var somebody4 = factory.newResource('org.szg', "SystemAdministrator");
-			var somebody4 = factory.newResource('org.szg', "SystemAdministrator", 'jmbag:1111000000');
-			somebody4.firstName = 'sistemski';
-			somebody4.lastName = 'adminic';
-			somebody4.memberType = 'Staff';
-			somebody4.universityComponent = FFZGRelation;
-			somebody4.jobPosition = "sistemAdmin";
-			await memberRegistry2.add(somebody4);*/
 		}
 		catch(error) {
 			console.log(error);
@@ -207,10 +151,6 @@ async function postAsync (url,formData) {
 	
 	//function with logic for accepting or revoking access
 	async function checkTransaction(){
-
-		/*this.bizNetworkConnection = new BusinessNetworkConnection();
-		const cardName = "admin@pii-szg-network";
-		this.businessNetworkDefinition = await this.bizNetworkConnection.connect(cardName);*/
 		
 		//get input
 		var jmbag = document.getElementById('jmbag').value;

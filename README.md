@@ -29,8 +29,8 @@ rm -fr $HOME/.composer
 #biti u direktoriju pii-szg-network
 
 composer archive create -t dir -n .
-composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.3.0.bna
-composer network start --networkName pii-szg-network --networkVersion 0.3.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer network install --card PeerAdmin@hlfv1 --archiveFile pii-szg-network@0.3.1.bna
+composer network start --networkName pii-szg-network --networkVersion 0.3.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 composer card import --file networkadmin.card
 
 #composer network ping --card admin@pii-szg-network
@@ -69,4 +69,10 @@ yo hyperledger-composer:angular
 
 cd angular-app-wons
 npm start
+
+
+#testing
+#stvoriti assete/membere/systemadmine iz PIInodes/testing.txt biilo preko RESTa, bilo playground te imporati 3 kartice za systemadmine
+
+#real simulation
 

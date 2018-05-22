@@ -26,7 +26,7 @@ const chai = require('chai');
 chai.should();
 chai.use(require('chai-as-promised'));
 
-const namespace = 'pii.szg';
+const namespace = 'org.szg';
 const assetType = 'UniversityComponent';
 const assetNS = namespace + '.' + assetType;
 const participantType = 'Member';
