@@ -21,6 +21,7 @@ import {Event} from './org.hyperledger.composer.system';
       transactionAuthorized: string[];
       transactionRevoke: string[];
       memberType: MemberType;
+      tid: string;
    }
    export class SystemAdministrator extends Participant {
       jmbag: string;
@@ -31,6 +32,7 @@ import {Event} from './org.hyperledger.composer.system';
       transactionAuthorized: string[];
       transactionRevoke: string[];
       memberType: MemberType;
+      tid: string;
    }
    export class UniversityComponent extends Asset {
       universityKey: string;
@@ -44,7 +46,7 @@ import {Event} from './org.hyperledger.composer.system';
    export abstract class MemberAccess extends Transaction {
       member: Member;
       universityComponent: UniversityComponent;
-      access: string;
+      tid: string;
    }
    export class CheckAccessFER extends MemberAccess {
    }

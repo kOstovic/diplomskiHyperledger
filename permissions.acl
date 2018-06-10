@@ -12,15 +12,7 @@
  * limitations under the License.
  */
 
-rule SampleConditionalRuleWithTransaction {
-    description: "Description of the ACL rule"
-    participant(m): "org.szg.SystemAdministrator"
-    operation: READ, CREATE, UPDATE
-    resource(v): "org.szg.*"
-    transaction(tx): "org.szg.*"
-    condition: (m.universityComponent.getIdentifier() == tx.universityComponent.getIdentifier())
-    action: ALLOW
-}
+
 rule FerSysAdminCanFERStuff{
     description: "FerSysAdminCanControlFERAccess"
     participant(p): "org.szg.SystemAdministrator#0036000000"
@@ -56,7 +48,15 @@ rule SystemAdministratorCanReadEverything {
     resource: "org.szg.*"
     action: ALLOW
 }
-
+rule SampleConditionalRuleWithTransaction {
+    description: "Description of the ACL rule"
+    participant(m): "org.szg.SystemAdministrator"
+    operation: READ, CREATE, UPDATE
+    resource(v): "org.szg.*"
+    transaction(tx): "org.szg.*"
+    condition: (m.universityComponent.getIdentifier() == tx.universityComponent.getIdentifier())
+    action: ALLOW
+}
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
     participant(p): "org.szg.*"
@@ -65,7 +65,13 @@ rule OwnerHasFullAccessToTheirAssets {
     condition: (r.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
-
+rule SystemACL {
+  description:  "DENY ACL to UPDATE all"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: UPDATE
+  resource: "org.szg.**"
+  action: DENY
+}
 rule SystemACL {
   description:  "System ACL to permit all access"
   participant: "org.hyperledger.composer.system.Participant"
