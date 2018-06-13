@@ -4,6 +4,19 @@
 
 #Access control network for sveuciliste u zagrebu for thesis on FER
 
+Operating Systems: Ubuntu Linux 14.04 / 16.04 LTS (both 64-bit), or Mac OS 10.12
+Docker Engine: Version 17.03 or higher
+Docker-Compose: Version 1.8 or higher
+Node: 8.9 or higher (note version 9 is not supported) 8.11.0
+npm: v5.x
+git: 2.9.x or higher
+Python: 2.7.x
+A code editor of your choice, we recommend VSCode.
+
+npm install -g angular bootstrap jquery require requirejs chai-as-promised chai make-runnable request-promise net composer-admin composer-client composer-common composer-cli composer-connector-embedded composer-cucumber-steps http path cucumber mocha
+
+composer-* su na verziji 0.19.4
+
 #direktorij fabric-samples sa githuba skinuti u ~/fabric-samples
 #https://hyperledger.github.io/composer/latest/tutorials/deploy-to-fabric-multi-org
 #uklanja stare instalacije	
@@ -19,11 +32,6 @@ rm -fr $HOME/.composer
 ~/fabric-dev-servers/startFabric.sh
 ~/fabric-dev-servers/createPeerAdminCard.sh
 
-#podiže nove instalacije
-./byfn.sh -m generate
-./byfn.sh -m up -s couchdb -a
-./byfn.sh -m up
-./byfn.sh -m up -f docker-compose-cas.yaml
 #ostatak pratiti po uputama osim endoresment dijela i staviti za network da se zove pii-szg-network uz verziju 0.3.X.bna
 
 #biti u direktoriju pii-szg-network
